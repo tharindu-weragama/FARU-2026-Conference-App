@@ -1,3 +1,8 @@
+
+/* =========================================
+   FARU 2026 - GLOBAL STYLES
+========================================= */
+
 :root {
     --faru-green: #194525;
     --faru-turquoise: #8BCBD2;
@@ -5,19 +10,44 @@
     --faru-blue: #DCEAF2;
     --faru-cream: #F9F2E8;
     --faru-white: #FFFFFF;
+    --text-muted: #657168;
 }
 
-/* APPLICATION HEADER*/
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+section {
+    scroll-margin-top: 20px;
+}
+
+
+/* =========================================
+   APPLICATION HEADER
+========================================= */
+
 .app-header {
-    background-color: var(--faru-turquoise);
+    background: var(--faru-turquoise);
     color: var(--faru-green);
     padding: 12px 24px;
 }
+
 .app-header h4 {
     font-size: 23px;
     font-weight: 800;
     margin: 0;
 }
+
 .app-header p {
     font-size: 13px;
     font-weight: 500;
@@ -26,18 +56,31 @@
 }
 
 
-/* CONFERENCE HERO SECTION*/
+/* =========================================
+   HERO SECTION
+========================================= */
 
 .hero-section {
-    background: linear-gradient(135deg, #194525 0%, #24633A 65%, #8BCBD2 100%);
+    background: linear-gradient(
+        135deg,
+        #194525 0%,
+        #24633A 65%,
+        #8BCBD2 100%
+    );
     color: var(--faru-white);
-    padding: 55px 30px;
-    min-height: 350px;
+    padding: 65px 35px;
+    min-height: 390px;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
 }
+
+.hero-section .container-fluid {
+    position: relative;
+    z-index: 1;
+}
+
 .hero-section::after {
     content: "";
     position: absolute;
@@ -47,7 +90,9 @@
     border-radius: 50%;
     right: -80px;
     bottom: -120px;
+    pointer-events: none;
 }
+
 .hero-label {
     display: inline-block;
     font-size: 12px;
@@ -56,60 +101,72 @@
     color: var(--faru-lime);
     margin-bottom: 15px;
 }
+
 .hero-section h1 {
-    font-size: clamp(36px, 6vw, 58px);
+    font-size: clamp(36px, 5vw, 58px);
     font-weight: 800;
     line-height: 1.1;
-    max-width: 650px;
+    max-width: 700px;
     margin-bottom: 15px;
 }
+
 .hero-section h5 {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 400;
     max-width: 550px;
     line-height: 1.6;
     margin-bottom: 25px;
 }
+
 .hero-details p {
-    font-size: 14px;
-    margin-bottom: 8px;
+    font-size: 15px;
+    margin-bottom: 9px;
 }
+
 .hero-details i {
     color: var(--faru-lime);
     margin-right: 8px;
 }
+
 .hero-btn {
+    display: inline-block;
     background: var(--faru-lime);
     color: var(--faru-green);
     font-weight: 700;
-    padding: 11px 22px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 6px;
     margin-top: 12px;
+    transition: 0.3s ease;
 }
+
 .hero-btn:hover {
     background: var(--faru-white);
     color: var(--faru-green);
 }
 
 
-/* ===== CONFERENCE OVERVIEW ===== */
+/* =========================================
+   CONFERENCE OVERVIEW
+========================================= */
 
 .conference-overview {
-    background-color: var(--faru-cream);
+    background: var(--faru-cream);
+    padding-top: 75px !important;
+    padding-bottom: 75px !important;
 }
 
 .section-label {
+    display: inline-block;
     color: var(--faru-green);
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 2px;
-    display: inline-block;
     margin-bottom: 15px;
 }
 
 .conference-overview h2 {
     color: var(--faru-green);
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(28px, 3.5vw, 40px);
     font-weight: 800;
     line-height: 1.25;
     margin-bottom: 20px;
@@ -142,42 +199,44 @@
 }
 
 .overview-highlight hr {
-    border-color: rgba(255,255,255,0.3);
+    border-color: rgba(255, 255, 255, 0.3);
     margin: 22px 0;
 }
 
 
-/* ===== CONFERENCE HIGHLIGHTS ===== */
+/* =========================================
+   CONFERENCE HIGHLIGHTS
+   ========================================= */
 
 .conference-highlights {
     background: var(--faru-white);
+    padding-top: 75px !important;
+    padding-bottom: 75px !important;
 }
 
 .highlights-title {
     color: var(--faru-green);
-    font-size: clamp(28px, 4vw, 38px);
+    font-size: clamp(28px, 3.5vw, 38px);
     font-weight: 800;
     margin-bottom: 12px;
 }
 
 .conference-highlights .text-center > p {
-    color: #68756C;
+    color: var(--text-muted);
     font-size: 15px;
 }
 
 .highlight-card {
     height: 100%;
-    padding: 32px 26px;
+    padding: 30px 26px;
     background: var(--faru-cream);
     border-radius: 12px;
     border-bottom: 4px solid var(--faru-turquoise);
-    transition: all 0.3s ease;
-}
-
-.highlight-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(25, 69, 37, 0.12);
-    border-bottom-color: var(--faru-lime);
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .highlight-icon {
@@ -189,31 +248,230 @@
     background: var(--faru-green);
     color: var(--faru-white);
     border-radius: 12px;
-    font-size: 25px;
-    margin-bottom: 22px;
+    font-size: 24px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
 }
 
 .highlight-card h4 {
     color: var(--faru-green);
     font-size: 19px;
     font-weight: 750;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .highlight-card p {
-    color: #657168;
+    color: var(--text-muted);
     font-size: 14px;
     line-height: 1.8;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .highlight-card a {
     color: var(--faru-green);
     font-size: 14px;
     font-weight: 700;
+    margin-top: auto;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .highlight-card a:hover {
     color: #729D2E;
 }
 
+
+/* =========================================
+   DESKTOP HOVER EFFECTS
+   ========================================= */
+
+@media (hover: hover) and (min-width: 768px) {
+
+    .highlight-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(25, 69, 37, 0.12);
+        border-bottom-color: var(--faru-lime);
+    }
+
+}
+
+
+/* =========================================
+   TABLET RESPONSIVENESS
+   ========================================= */
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+
+    .conference-overview,
+    .conference-highlights {
+        padding-top: 55px !important;
+        padding-bottom: 55px !important;
+    }
+
+    .highlight-card {
+        padding: 24px 20px;
+    }
+
+    .highlight-card h4 {
+        font-size: 17px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 575.98px) {
+
+    /* Header */
+
+    .app-header {
+        padding: 10px 16px;
+    }
+
+    .app-header h4 {
+        font-size: 19px;
+    }
+
+    .app-header p {
+        font-size: 12px;
+    }
+
+
+    /* Hero */
+
+    .hero-section {
+        padding: 55px 20px;
+        min-height: 350px;
+    }
+
+    .hero-label {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+    }
+
+    .hero-section h1 {
+        font-size: clamp(34px, 9vw, 42px);
+        line-height: 1.12;
+        margin-bottom: 14px;
+    }
+
+    .hero-section h5 {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .hero-details p {
+        font-size: 13px;
+    }
+
+    .hero-btn {
+        font-size: 13px;
+        padding: 10px 18px;
+    }
+
+    .hero-section::after {
+        width: 200px;
+        height: 200px;
+        border-width: 30px;
+        right: -85px;
+        bottom: -95px;
+    }
+
+
+    /* Overview */
+
+    .conference-overview {
+        padding: 45px 0 !important;
+    }
+
+    .section-label {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+    }
+
+    .conference-overview h2 {
+        font-size: 27px;
+        line-height: 1.25;
+        margin-bottom: 16px;
+    }
+
+    .conference-overview p {
+        font-size: 14px;
+        line-height: 1.75;
+        margin-bottom: 14px;
+    }
+
+    .overview-highlight {
+        padding: 24px 20px;
+        border-left-width: 5px;
+        border-radius: 10px;
+    }
+
+    .overview-highlight h3 {
+        font-size: 21px;
+    }
+
+    .overview-highlight p {
+        font-size: 13px;
+    }
+
+    .overview-highlight hr {
+        margin: 17px 0;
+    }
+
+
+    /* Highlights */
+
+    .conference-highlights {
+        padding: 45px 0 !important;
+    }
+
+    .conference-highlights .text-center {
+        margin-bottom: 30px !important;
+    }
+
+    .highlights-title {
+        font-size: 26px;
+        line-height: 1.2;
+    }
+
+    .conference-highlights .text-center > p {
+        font-size: 13px;
+    }
+
+    .highlight-card {
+        min-height: 0;
+        padding: 20px !important;
+        border-radius: 10px;
+    }
+
+    .highlight-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+        border-radius: 9px;
+        margin-bottom: 13px;
+    }
+
+    .highlight-card h4 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .highlight-card p {
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 13px;
+    }
+
+    .highlight-card a {
+        font-size: 13px;
+    }
+
+}
