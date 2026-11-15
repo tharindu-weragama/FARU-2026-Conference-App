@@ -1,0 +1,115 @@
+
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const university = 'University of Moratuwa, Katubedda, Sri Lanka';
+const hotel = 'Jetwing Lighthouse Hotel, Galle, Sri Lanka';
+
+const campusMap =
+  `https://www.google.com/maps?q=${encodeURIComponent(university)}&output=embed`;
+
+const universityLink =
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(university)}`;
+
+const hotelLink =
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel)}`;
+
+const directionsLink =
+  `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(university)}&destination=${encodeURIComponent(hotel)}&travelmode=driving`;
+---
+
+<BaseLayout title="Venue">
+  <section class="bg-faru-green px-5 py-7 text-white">
+    <p class="text-xs font-semibold uppercase tracking-widest text-faru-turquoise">
+      FARU 2026
+    </p>
+    <h1 class="mt-2 text-[28px] font-extrabold">
+      Conference Venues
+    </h1>
+    <p class="mt-2 text-sm text-white/85">
+      Locations and travel directions
+    </p>
+  </section>
+
+  <section class="bg-[#eef7f8] px-4 py-6">
+    <article class="overflow-hidden rounded-2xl bg-white shadow-sm">
+      <div class="p-4">
+        <span class="rounded-md bg-faru-blue px-3 py-2 text-xs font-bold text-faru-green">
+          Day 01 · 27 November 2026
+        </span>
+
+        <h2 class="mt-5 text-xl font-bold text-faru-green">
+          University of Moratuwa
+        </h2>
+
+        <p class="mt-2 text-sm text-faru-muted">
+          Katubedda, Sri Lanka
+        </p>
+      </div>
+
+      <iframe
+        src={campusMap}
+        title="University of Moratuwa location"
+        class="h-[280px] w-full border-0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+
+      <div class="p-4">
+        <a
+          href={universityLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex min-h-12 items-center justify-center rounded-xl bg-faru-green px-4 text-center text-sm font-bold text-white"
+        >
+          Open Campus in Google Maps
+        </a>
+
+        <p class="mt-3 text-xs leading-5 text-faru-muted">
+          The exact conference hall and registration location
+          within the campus will be added after confirmation.
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <section class="bg-faru-cream px-4 py-6">
+    <article class="overflow-hidden rounded-2xl bg-white p-4 shadow-sm">
+      <span class="rounded-md bg-faru-blue px-3 py-2 text-xs font-bold text-faru-green">
+        Day 02 · 28 November 2026
+      </span>
+
+      <h2 class="mt-5 text-xl font-bold text-faru-green">
+        Jetwing Lighthouse Hotel
+      </h2>
+
+      <p class="mt-2 text-sm text-faru-muted">
+        Galle, Sri Lanka
+      </p>
+
+      <p class="mt-3 text-sm leading-6 text-faru-muted">
+        Venue for the announced Day 02 keynote sessions.
+      </p>
+
+      <div class="mt-5 space-y-3">
+        <a
+          href={directionsLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex min-h-12 items-center justify-center rounded-xl bg-faru-green px-4 text-center text-sm font-bold text-white"
+        >
+          Directions from UoM to Jetwing Lighthouse
+        </a>
+
+        <a
+          href={hotelLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex min-h-12 items-center justify-center rounded-xl border border-faru-green px-4 text-center text-sm font-bold text-faru-green"
+        >
+          View Hotel Location
+        </a>
+      </div>
+    </article>
+  </section>
+</BaseLayout>

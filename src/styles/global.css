@@ -1,1 +1,29 @@
+
 @import "tailwindcss";
+
+@theme {
+  --color-faru-green: #194525;
+  --color-faru-turquoise: #8bcbd2;
+  --color-faru-lime: #a3c83d;
+  --color-faru-blue: #dceaf2;
+  --color-faru-cream: #f9f2e8;
+  --color-faru-white: #ffffff;
+  --color-faru-muted: #536057;
+
+  --font-sans: "Segoe UI", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

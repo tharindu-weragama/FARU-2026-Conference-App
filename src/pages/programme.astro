@@ -1,0 +1,98 @@
+
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const days = [
+  {
+    number: '01',
+    date: '27 November 2026',
+    venue: 'University of Moratuwa',
+    speakers: ['Prof. Ian Dixon'],
+  },
+  {
+    number: '02',
+    date: '28 November 2026',
+    venue: 'Jetwing Lighthouse Hotel, Galle',
+    speakers: [
+      'Dr. Somsook Boonyabancha',
+      'Mr. Johan Gély',
+    ],
+  },
+];
+---
+
+<BaseLayout title="Programme">
+  <section class="bg-faru-green px-5 py-7 text-white">
+    <p class="text-xs font-semibold uppercase tracking-widest text-faru-turquoise">
+      FARU 2026
+    </p>
+    <h1 class="mt-2 text-[28px] font-extrabold">
+      Conference Programme
+    </h1>
+    <p class="mt-2 text-sm text-white/85">
+      27–28 November 2026
+    </p>
+  </section>
+
+  <section class="bg-[#eef7f8] px-4 py-6">
+    <div class="mb-5">
+      <h2 class="text-lg font-bold text-faru-green">
+        Conference Days
+      </h2>
+      <p class="mt-1 text-sm text-faru-muted">
+        Announced keynote sessions
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {days.map((day) => (
+        <article class="overflow-hidden rounded-2xl bg-white shadow-sm">
+          <div class="flex items-center gap-4 bg-faru-turquoise/60 p-4">
+            <div class="rounded-xl bg-faru-green px-3 py-2 text-center text-white">
+              <p class="text-[10px] font-bold uppercase">Day</p>
+              <p class="text-2xl font-extrabold">{day.number}</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-faru-green">{day.date}</h3>
+              <p class="mt-1 text-xs text-faru-muted">
+                Announced keynote venue
+              </p>
+              <p class="text-sm font-medium text-faru-green">
+                {day.venue}
+              </p>
+            </div>
+          </div>
+
+          <div class="p-4">
+            <p class="mb-3 text-xs font-bold uppercase tracking-wide text-faru-muted">
+              Keynote Speakers
+            </p>
+
+            <div class="space-y-2">
+              {day.speakers.map((speaker) => (
+                <div class="rounded-lg bg-faru-cream px-4 py-3 text-sm font-semibold text-faru-green">
+                  {speaker}
+                </div>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white px-5 py-6">
+    <h2 class="text-lg font-bold text-faru-green">
+      Technical Programme
+    </h2>
+    <div class="mt-3 rounded-xl border border-faru-turquoise bg-[#eef7f8] p-4">
+      <p class="text-sm font-semibold text-faru-green">
+        Detailed programme to be announced
+      </p>
+      <p class="mt-2 text-sm leading-6 text-faru-muted">
+        Session times, research presentations, technical sessions
+        and panel member information will be added once confirmed.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
