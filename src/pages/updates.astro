@@ -1,0 +1,99 @@
+
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout title="Live Updates">
+  <section class="bg-faru-green px-5 py-7 text-white">
+    <p class="text-xs font-semibold uppercase tracking-widest text-faru-lime">
+      FARU 2026
+    </p>
+    <h1 class="mt-2 text-2xl font-bold">Live Conference Updates</h1>
+    <p class="mt-2 text-sm text-white/80">
+      Session information and official conference announcements
+    </p>
+  </section>
+
+  <section class="min-h-[400px] bg-faru-cream px-4 py-6">
+    <h2 class="mb-4 text-lg font-bold text-faru-green">
+      Latest Updates
+    </h2>
+
+    <div id="updates-feed" class="space-y-4" aria-live="polite">
+      <p class="text-sm text-faru-muted">Loading announcements...</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import {sanityClient, updatesQuery} from '../lib/sanity'
+
+  interface ConferenceUpdate {
+    _id: string
+    title: string
+    message: string
+    sessionName?: string
+    venue?: string
+    status?: string
+    priority?: string
+  }
+
+  async function loadUpdates() {
+    const feed = document.getElementById('updates-feed')
+    if (!feed) return
+
+    try {
+      const updates = await sanityClient.fetch<ConferenceUpdate[]>(updatesQuery)
+
+      if (updates.length === 0) {
+        feed.textContent = 'No conference updates available yet.'
+        return
+      }
+
+      feed.replaceChildren()
+
+      for (const update of updates) {
+        const card = document.createElement('article')
+        card.className = 'rounded-xl border border-gray-200 bg-white p-4 shadow-sm'
+
+        const heading = document.createElement('h3')
+        heading.className = 'text-base font-bold text-faru-green'
+        heading.textContent = update.title
+
+        const message = document.createElement('p')
+        message.className = 'mt-3 text-sm leading-6 text-faru-muted'
+        message.textContent = update.message
+
+        card.append(heading, message)
+
+        if (update.sessionName || update.venue || update.status) {
+          const details = document.createElement('p')
+          details.className = 'mt-3 text-xs font-medium text-faru-green'
+
+          const statusLabels: Record<string, string> = {
+            scheduled: 'Scheduled',
+            inProgress: 'In Progress',
+            delayed: 'Delayed',
+            completed: 'Completed',
+            cancelled: 'Cancelled',
+          }
+
+          details.textContent = [
+            update.sessionName,
+            update.venue,
+            update.status ? statusLabels[update.status] ?? update.status : '',
+          ].filter(Boolean).join(' • ')
+
+          card.append(details)
+        }
+
+        feed.append(card)
+      }
+    } catch (error) {
+      console.error('Failed to load conference updates:', error)
+      feed.textContent = 'Unable to load updates. Please try again later.'
+    }
+  }
+
+  loadUpdates()
+</script>

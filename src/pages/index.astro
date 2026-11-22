@@ -1,6 +1,7 @@
 
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LiveUpdatesPreview from '../components/LiveUpdatesPreview.astro'
 
 
 const statistics = [
@@ -221,19 +222,7 @@ const sponsors = [
     </div>
   </section>
 
-  <section class="bg-white px-5 py-6">
-    <h2 class="text-lg font-extrabold text-faru-green">
-      Conference Updates
-    </h2>
-
-    <div class="mt-3 rounded-xl border-l-4 border-faru-lime bg-faru-cream p-4">
-      <p class="text-sm leading-6 text-faru-muted">
-        The detailed technical programme, panel information and
-        additional speaker details will be available following
-        confirmation by the conference organisers.
-      </p>
-    </div>
-  </section>
+<LiveUpdatesPreview />
 
   
 <section class="bg-[#eef7f8] pb-6">
