@@ -1,0 +1,222 @@
+
+---
+const isHome = Astro.url.pathname === '/'
+---
+
+{isHome && (
+  <footer class="bg-[#eef7f8] px-2 pb-2 pt-2">
+    <div class="overflow-hidden rounded-[16px] border border-[#e2ebe5] bg-white shadow-sm">
+
+      <!-- Sponsors -->
+      <section class="px-3 pb-2 pt-2" data-sponsor-carousel>
+
+        <div class="flex items-center gap-2">
+          <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-faru-green text-white">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M2 12l5-5 4 2 4-2 7 5-8 8-4-3-3 1z" />
+              <path d="m8 14 5 4M11 11l4 4" />
+            </svg>
+          </div>
+
+          <h2 class="min-w-0 flex-1 text-[13px] font-bold text-faru-green">
+            Conference Sponsors
+          </h2>
+
+          <div class="flex shrink-0 items-center gap-1.5">
+            <button
+              type="button"
+              data-slide="prev"
+              aria-label="Previous sponsors"
+              class="flex h-8 w-8 items-center justify-center rounded-full border border-[#cbdcd2] bg-white text-faru-green hover:bg-[#e5f3f1] disabled:opacity-30"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              data-slide="next"
+              aria-label="Next sponsors"
+              class="flex h-8 w-8 items-center justify-center rounded-full border border-[#cbdcd2] bg-white text-faru-green hover:bg-[#e5f3f1] disabled:opacity-30"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="sponsor-track mt-2 overflow-x-auto scroll-smooth"
+          data-sponsor-track
+          role="region"
+          aria-label="Conference sponsor logos"
+          tabindex="0"
+        >
+          <img
+            src="/images/sponsors/sponsors.png"
+            alt="FARU 2026 conference sponsors"
+            width="2048"
+            height="213"
+            loading="lazy"
+            class="block h-auto w-[680px] max-w-none"
+          />
+        </div>
+
+        <div class="mx-auto mt-1.5 h-[3px] w-28 overflow-hidden rounded-full bg-[#dcece5]">
+          <div
+            data-progress
+            class="h-full w-1/3 rounded-full bg-faru-green transition-all"
+          ></div>
+        </div>
+
+      </section>
+
+      <!-- FARU and Developer -->
+      <section class="mx-3 mt-2 border-t border-[#dce9e2] py-2">
+
+        <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-5">
+
+          <div class="flex min-w-0 items-center justify-start pl-2">
+            <img
+              src="/images/branding/Farulog.png"
+              alt="Faculty of Architecture Research Unit, University of Moratuwa"
+              width="400"
+              height="120"
+              loading="lazy"
+              class="block h-auto w-full max-w-[200px] object-contain object-left"
+            />
+          </div>
+
+          <div class="flex w-fit max-w-full flex-col items-center justify-center justify-self-end rounded-lg border border-[#d5e7dc] bg-[#f0f7f3] px-3 py-2 text-center">
+
+            <p class="text-[9px] leading-3 text-faru-muted">
+              Designed &amp; Developed by
+            </p>
+
+            <p class="mt-1 text-[11px] font-semibold leading-4 text-faru-green">
+              Tharindu Weragama
+            </p>
+
+            <a
+              href="mailto:tharindu.weragama98@gmail.com"
+              class="mt-1.5 inline-flex items-center justify-center gap-1 rounded-md border border-[#cbded2] bg-white px-2 py-1 text-[9px] font-medium text-faru-green transition-colors hover:bg-[#e4f2eb]"
+              aria-label="Contact developer by email"
+            >
+              Contact Developer
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Copyright -->
+      <p class="border-t border-gray-100 py-1.5 text-center text-[9px] text-faru-muted">
+        © 2026 FARU. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+)}
+
+<style>
+  .sponsor-track {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .sponsor-track::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  function setupSponsorCarousel() {
+    document.querySelectorAll<HTMLElement>('[data-sponsor-carousel]').forEach((carousel) => {
+      if (carousel.dataset.initialized === 'true') return;
+
+      const track = carousel.querySelector<HTMLElement>('[data-sponsor-track]');
+      const prev = carousel.querySelector<HTMLButtonElement>('[data-slide="prev"]');
+      const next = carousel.querySelector<HTMLButtonElement>('[data-slide="next"]');
+      const progress = carousel.querySelector<HTMLElement>('[data-progress]');
+
+      if (!track || !prev || !next || !progress) return;
+
+      carousel.dataset.initialized = 'true';
+
+      const update = () => {
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+        const position = Math.max(0, Math.min(track.scrollLeft, maxScroll));
+
+        prev.disabled = position <= 2;
+        next.disabled = position >= maxScroll - 2;
+
+        const visibleRatio = Math.min(1, track.clientWidth / track.scrollWidth);
+        const progressWidth = visibleRatio * 100;
+        const travel = maxScroll > 0 ? position / maxScroll : 0;
+
+        progress.style.width = `${progressWidth}%`;
+        progress.style.marginLeft = `${travel * (100 - progressWidth)}%`;
+      };
+
+      prev.addEventListener('click', () => {
+        track.scrollBy({
+          left: -track.clientWidth * 0.8,
+          behavior: 'smooth',
+        });
+      });
+
+      next.addEventListener('click', () => {
+        track.scrollBy({
+          left: track.clientWidth * 0.8,
+          behavior: 'smooth',
+        });
+      });
+
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+
+      const image = track.querySelector('img');
+      image?.addEventListener('load', update);
+
+      update();
+    });
+  }
+
+  setupSponsorCarousel();
+  document.addEventListener('astro:page-load', setupSponsorCarousel);
+</script>

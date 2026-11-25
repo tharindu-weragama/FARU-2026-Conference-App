@@ -1,98 +1,1007 @@
 
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { technicalSessions } from '../data/technicalSessions';
 
-const days = [
+const opening = [
+  { time: '08:30–09:00', title: 'Registration & Welcome' },
+  { time: '09:00–09:05', title: 'Arrival of Guests and Keynote Speakers' },
+  { time: '09:05–09:10', title: 'National Anthem' },
+  { time: '09:10–09:15', title: 'Lighting of Oil Lamp' },
+  {
+    time: '09:15–09:25',
+    title: 'Welcome Address',
+    detail: 'Prof. Y.G. Sandanayake, Dean, Faculty of Architecture',
+  },
+  { time: '09:25–09:35', title: 'Introduction to FARU Theme' },
+  {
+    time: '09:35–09:45',
+    title: 'Address by the Chief Guest',
+    detail: 'Snr. Prof. K.T.M. Udayanga Hemapala, Vice Chancellor',
+  },
+  { time: '09:45–09:50', title: 'Introduction to the Keynote Speaker' },
+  {
+    time: '09:50–10:20',
+    title: 'Keynote Address',
+    detail: 'Prof. Ian Dixon',
+  },
+  { time: '10:20–10:30', title: 'Introduction to the Conference Line-up' },
+  { time: '10:30–11:00', title: 'Refreshments' },
+];
+
+const closing = [
+  { time: '16:45–17:00', title: 'Refreshments' },
+  {
+    time: '17:15–17:30',
+    title: 'Conference Sum-up and Launch of Next Year’s Theme',
+  },
+  { time: '17:30–17:45', title: 'Presentation of Awards' },
+  {
+    time: '17:45–17:55',
+    title: 'Vote of Thanks',
+    detail: 'Director, Faculty of Architecture Research Unit (FARU)',
+  },
+  { time: '17:55–18:00', title: 'End of Day 1' },
+];
+
+const blocks = [
   {
     number: '01',
-    date: '27 November 2026',
-    venue: 'University of Moratuwa',
-    speakers: ['Prof. Ian Dixon'],
+    time: '11:00–12:30',
+    sessions: technicalSessions.slice(0, 5),
   },
   {
     number: '02',
-    date: '28 November 2026',
-    venue: 'Jetwing Lighthouse Hotel, Galle',
-    speakers: [
-      'Dr. Somsook Boonyabancha',
-      'Mr. Johan Gély',
+    time: '13:30–15:00',
+    sessions: technicalSessions.slice(5, 10),
+  },
+  {
+    number: '03',
+    time: '15:15–16:45',
+    sessions: technicalSessions.slice(10, 15),
+  },
+];
+
+const dayTwoGroups = [
+  {
+    title: 'Workshop Inauguration',
+    items: [
+      {
+        time: '06:30',
+        title: 'Departure from University of Moratuwa',
+      },
+      {
+        time: '08:30–09:00',
+        title: 'Arrival of Participants and Registration',
+      },
+      {
+        time: '09:00–09:10',
+        title: 'Welcome Address',
+        detail: 'Prof. Y.G. Sandanayake, Dean, Faculty of Architecture',
+      },
+      {
+        time: '09:10–09:15',
+        title: 'Introduction to the Keynote Speaker',
+      },
+      {
+        time: '09:15–09:45',
+        title: 'Keynote Address',
+        detail: 'Mr. Johan Gély',
+      },
+      {
+        time: '09:45–10:30',
+        title: 'Featured Speakers’ Session',
+        detail:
+          'Perspectives on Resilient Intelligence and the Changing Built Environment — Mr. Rusiru Abeysinghe and Mr. Dmitri Cooray. Q&A moderated by Dr. P.I. Singhapathirana.',
+      },
+      {
+        time: '10:30–11:00',
+        title: 'Refreshments',
+      },
+    ],
+  },
+  {
+    title: 'I³ — Interactive, Inspiring and Innovative',
+    items: [
+      {
+        time: '11:00–11:15',
+        title: 'Department Showcase 1',
+        detail: 'Town & Country Planning',
+      },
+      {
+        time: '11:15–11:30',
+        title: 'Department Showcase 2',
+        detail: 'Building Economics',
+      },
+      {
+        time: '11:30–11:45',
+        title: 'Entertainment Performance',
+      },
+      {
+        time: '11:45–12:00',
+        title: 'Department Showcase 3',
+        detail: 'Integrated Design',
+      },
+      {
+        time: '12:00–12:15',
+        title: 'Department Showcase 4',
+        detail: 'Facilities Management',
+      },
+      {
+        time: '12:15–12:30',
+        title: 'Department Showcase 5',
+        detail: 'Architecture',
+      },
+      {
+        time: '12:30–12:45',
+        title: 'Entertainment Performance',
+      },
+      {
+        time: '12:45–12:55',
+        title: 'Closing Remarks',
+      },
+      {
+        time: '12:55–13:00',
+        title: 'Vote of Thanks',
+        detail: 'Dr. T.L.M. Meetiyagoda, Director, FARU',
+      },
+    ],
+  },
+  {
+    title: 'Networking & Departure',
+    items: [
+      {
+        time: '13:00–14:00',
+        title: 'Lunch',
+      },
+      {
+        time: '14:00–16:00',
+        title: 'Informal Discussions, Networking and Entertainment',
+      },
+      {
+        time: '16:00–16:30',
+        title: 'Refreshments',
+      },
+      {
+        time: '16:30–17:00',
+        title: 'Group Photograph and Return to University of Moratuwa',
+      },
+      {
+        time: '17:00–19:00',
+        title: 'Arrival at University of Moratuwa and End of Day 2',
+      },
     ],
   },
 ];
 ---
 
 <BaseLayout title="Programme">
-  <section class="bg-faru-green px-5 py-7 text-white">
-    <p class="text-xs font-semibold uppercase tracking-widest text-faru-turquoise">
+
+  <section class="bg-faru-green px-5 py-6 text-white">
+    <p class="text-xs font-semibold uppercase tracking-widest text-[#CFE5B4]">
       FARU 2026
     </p>
-    <h1 class="mt-2 text-[28px] font-extrabold">
+
+    <h1 class="mt-2 text-[27px] font-extrabold leading-tight">
       Conference Programme
     </h1>
+
     <p class="mt-2 text-sm text-white/85">
-      27–28 November 2026
+      27–28 November 2026 · Sri Lanka time
     </p>
   </section>
 
-  <section class="bg-[#eef7f8] px-4 py-6">
-    <div class="mb-5">
-      <h2 class="text-lg font-bold text-faru-green">
-        Conference Days
-      </h2>
-      <p class="mt-1 text-sm text-faru-muted">
-        Announced keynote sessions
-      </p>
+  <section class="bg-[#F7FAF1] px-4 py-5">
+
+    <div id="programme-switcher" class="scroll-mt-24 space-y-3">
+
+      <div
+        class="grid grid-cols-2 gap-1.5 rounded-2xl bg-white p-1.5 shadow-sm"
+        role="group"
+        aria-label="Select conference day"
+      >
+        <button
+          type="button"
+          data-day-button="1"
+          aria-pressed="true"
+          class="rounded-xl bg-faru-green px-2 py-3 text-sm font-bold text-white transition-colors"
+        >
+          27 Nov · Day 1
+        </button>
+
+        <button
+          type="button"
+          data-day-button="2"
+          aria-pressed="false"
+          class="rounded-xl px-2 py-3 text-sm font-bold text-faru-green transition-colors"
+        >
+          28 Nov · Day 2
+        </button>
+      </div>
+
+      <div
+        data-view-switcher
+        class="grid grid-cols-2 gap-1.5 rounded-xl border border-[#D6E7C0] bg-[#EDF5DC] p-1"
+        role="group"
+        aria-label="Day 1 programme section"
+      >
+        <button
+          type="button"
+          data-view-button="agenda"
+          aria-pressed="true"
+          class="rounded-lg bg-faru-green px-2 py-2.5 text-xs font-bold text-white"
+        >
+          Full Agenda
+        </button>
+
+        <button
+          type="button"
+          data-view-button="technical"
+          aria-pressed="false"
+          class="rounded-lg px-2 py-2.5 text-xs font-bold text-faru-green"
+        >
+          Technical Sessions
+        </button>
+      </div>
+
     </div>
 
-    <div class="space-y-4">
-      {days.map((day) => (
-        <article class="overflow-hidden rounded-2xl bg-white shadow-sm">
-          <div class="flex items-center gap-4 bg-faru-turquoise/60 p-4">
-            <div class="rounded-xl bg-faru-green px-3 py-2 text-center text-white">
-              <p class="text-[10px] font-bold uppercase">Day</p>
-              <p class="text-2xl font-extrabold">{day.number}</p>
-            </div>
-            <div>
-              <h3 class="font-bold text-faru-green">{day.date}</h3>
-              <p class="mt-1 text-xs text-faru-muted">
-                Announced keynote venue
-              </p>
-              <p class="text-sm font-medium text-faru-green">
-                {day.venue}
-              </p>
-            </div>
-          </div>
+    <!-- Day 1 -->
+    <div data-day-panel="1" class="mt-5 space-y-5">
 
-          <div class="p-4">
-            <p class="mb-3 text-xs font-bold uppercase tracking-wide text-faru-muted">
-              Keynote Speakers
+      <div data-view-panel="agenda" class="space-y-5">
+
+        <div class="rounded-2xl border border-[#D6E7C0] bg-white p-4">
+          <p class="text-xs font-bold uppercase tracking-wide text-faru-muted">
+            Friday, 27 November
+          </p>
+
+          <h2 class="mt-1 text-lg font-extrabold text-faru-green">
+            University of Moratuwa
+          </h2>
+
+          <p class="mt-1 text-xs leading-relaxed text-faru-muted">
+            Inauguration and closing: Rubert Peiris Auditorium ·
+            Technical sessions: Rubert Peiris Building
+          </p>
+        </div>
+
+        <!-- Conference Inauguration -->
+        <section
+          class="overflow-hidden rounded-2xl bg-white shadow-sm"
+          aria-labelledby="inauguration-heading"
+        >
+
+          <div class="bg-[#EDF5DC] px-4 py-3">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-faru-green/80">
+              01 · Full Agenda
             </p>
 
-            <div class="space-y-2">
-              {day.speakers.map((speaker) => (
-                <div class="rounded-lg bg-faru-cream px-4 py-3 text-sm font-semibold text-faru-green">
-                  {speaker}
-                </div>
-              ))}
-            </div>
+            <h3
+              id="inauguration-heading"
+              class="mt-1 text-base font-extrabold text-faru-green"
+            >
+              Conference Inauguration
+            </h3>
+
+            <p class="mt-0.5 text-xs text-faru-muted">
+              Rubert Peiris Auditorium
+            </p>
           </div>
-        </article>
-      ))}
+
+          <div class="divide-y divide-gray-100 px-4 py-1">
+            {opening.map((item) => (
+              <div class="flex gap-3 py-2.5">
+
+                <time class="w-[91px] shrink-0 text-[11px] font-bold tabular-nums text-faru-green">
+                  {item.time}
+                </time>
+
+                <div class="min-w-0 flex-1">
+                  <p class="text-sm font-semibold leading-snug text-faru-green">
+                    {item.title}
+                  </p>
+
+                  {item.detail && (
+                    <p class="mt-1 text-xs leading-relaxed text-faru-muted">
+                      {item.detail}
+                    </p>
+                  )}
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+        </section>
+
+        <!-- Technical Sessions Overview -->
+        <section
+          class="overflow-hidden rounded-2xl border border-[#D5E7BB] bg-white shadow-sm"
+          aria-labelledby="technical-overview-heading"
+        >
+
+          <div class="bg-faru-green px-4 py-4 text-white">
+            <p class="text-xs font-bold tracking-wide text-[#CFE5B4]">
+              02 · TECHNICAL SESSIONS
+            </p>
+
+            <h3
+              id="technical-overview-heading"
+              class="mt-2 text-xl font-extrabold"
+            >
+              15 Research Sessions
+            </h3>
+
+            <p class="mt-1 text-xs leading-relaxed text-white/85">
+              11:00–16:45 · Rubert Peiris Building
+            </p>
+          </div>
+
+          <div class="space-y-2 p-3">
+
+            {blocks.map((block) => (
+              <div class="rounded-xl border border-[#D7E9C3] bg-[#EDF5DC] px-3 py-3">
+
+                <div class="flex items-center justify-between gap-2">
+                  <h4 class="text-sm font-extrabold text-faru-green">
+                    Block {block.number}
+                  </h4>
+
+                  <time class="text-xs font-bold tabular-nums text-faru-green">
+                    {block.time}
+                  </time>
+                </div>
+
+                <p class="mt-1 text-xs text-[#49633B]">
+                  Sessions {String(block.sessions[0].number).padStart(2, '0')}–{String(block.sessions[4].number).padStart(2, '0')}
+                  {' '}· Rooms A–E
+                </p>
+
+              </div>
+            ))}
+
+            <button
+              type="button"
+              data-explore-technical
+              class="flex w-full items-center justify-center gap-2 rounded-xl bg-faru-green px-3 py-3 text-sm font-bold text-white transition-colors hover:bg-[#12371E]"
+            >
+              Explore Technical Sessions
+              <span aria-hidden="true">→</span>
+            </button>
+
+          </div>
+
+        </section>
+
+        <!-- Conference Closing -->
+        <section
+          class="overflow-hidden rounded-2xl bg-white shadow-sm"
+          aria-labelledby="closing-heading"
+        >
+
+          <div class="bg-[#EDF5DC] px-4 py-3">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-faru-green/80">
+              03 · Full Agenda
+            </p>
+
+            <h3
+              id="closing-heading"
+              class="mt-1 text-base font-extrabold text-faru-green"
+            >
+              Conference Closing
+            </h3>
+
+            <p class="mt-0.5 text-xs text-faru-muted">
+              Rubert Peiris Auditorium
+            </p>
+          </div>
+
+          <div class="divide-y divide-gray-100 px-4 py-1">
+            {closing.map((item) => (
+              <div class="flex gap-3 py-2.5">
+
+                <time class="w-[91px] shrink-0 text-[11px] font-bold tabular-nums text-faru-green">
+                  {item.time}
+                </time>
+
+                <div class="min-w-0 flex-1">
+                  <p class="text-sm font-semibold leading-snug text-faru-green">
+                    {item.title}
+                  </p>
+
+                  {item.detail && (
+                    <p class="mt-1 text-xs leading-relaxed text-faru-muted">
+                      {item.detail}
+                    </p>
+                  )}
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+        </section>
+
+      </div>
+
+      <!-- Day 1 Technical Sessions -->
+      <div data-view-panel="technical" class="space-y-4" hidden>
+
+        <div class="flex items-start justify-between gap-3 rounded-2xl border border-[#D6E7C0] bg-white p-4">
+
+          <div>
+            <h2 class="text-lg font-extrabold text-faru-green">
+              Technical Sessions
+            </h2>
+
+            <p class="mt-1 text-xs leading-relaxed text-faru-muted">
+              15 sessions · Five parallel rooms · 27 November
+            </p>
+          </div>
+
+          <button
+            type="button"
+            data-back-to-agenda
+            class="shrink-0 rounded-lg border border-[#D6E7C0] px-3 py-2 text-xs font-bold text-faru-green"
+          >
+            Agenda
+          </button>
+
+        </div>
+
+        {blocks.map((block) => (
+          <section class="space-y-3" aria-label={`Technical Block ${block.number}`}>
+
+            <div class="rounded-xl border border-[#D6E7C0] bg-[#EDF5DC] px-4 py-3">
+
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="text-base font-extrabold text-faru-green">
+                  Block {block.number}
+                </h3>
+
+                <time class="shrink-0 text-xs font-bold tabular-nums text-faru-green">
+                  {block.time}
+                </time>
+              </div>
+
+              <p class="mt-1 text-xs text-[#49633B]">
+                Sessions {String(block.sessions[0].number).padStart(2, '0')}–{String(block.sessions[4].number).padStart(2, '0')}
+                {' '}· Rooms A–E
+              </p>
+
+            </div>
+
+            {block.sessions.map((session) => (
+              <details
+                id={session.id}
+                class="group scroll-mt-24 overflow-hidden rounded-2xl border border-[#DFEACE] bg-white shadow-sm"
+              >
+
+                <summary class="flex cursor-pointer list-none items-start gap-3 p-4 [&::-webkit-details-marker]:hidden">
+
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#EDF5DC] text-sm font-extrabold text-faru-green">
+                    {String(session.number).padStart(2, '0')}
+                  </div>
+
+                  <div class="min-w-0 flex-1">
+
+                    <p class="text-sm font-extrabold leading-snug text-faru-green">
+                      Session {String(session.number).padStart(2, '0')}
+                    </p>
+
+                    <p class="mt-1 text-xs font-medium leading-relaxed text-faru-green">
+                      {session.theme}
+                    </p>
+
+                    <div class="mt-2 flex flex-wrap gap-1.5 text-[11px] font-semibold text-faru-muted">
+
+                      <span class="rounded-md bg-[#EDF5DC] px-2 py-1">
+                        {session.room}
+                      </span>
+
+                      <span class="rounded-md bg-[#EDF5DC] px-2 py-1">
+                        {session.start}–{session.end}
+                      </span>
+
+                      {session.online && (
+                        <span class="rounded-md bg-[#EDF5DC] px-2 py-1">
+                          Online session
+                        </span>
+                      )}
+
+                      <span class="rounded-md bg-[#EDF5DC] px-2 py-1">
+                        {session.papers.length} papers
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  <span
+                    class="mt-1 shrink-0 text-lg font-bold text-faru-green transition-transform group-open:rotate-180"
+                    aria-hidden="true"
+                  >
+                    ⌄
+                  </span>
+
+                </summary>
+
+                <div class="border-t border-[#E5EFDA] px-4 pb-4 pt-3">
+
+                  <div class="space-y-1 rounded-xl bg-[#F4F8ED] p-3 text-xs leading-relaxed">
+
+                    <p>
+                      <strong class="text-faru-green">Session chair:</strong>
+                      {' '}{session.chair}
+                    </p>
+
+                    <p>
+                      <strong class="text-faru-green">Co-chair:</strong>
+                      {' '}{session.coChair}
+                    </p>
+
+                    <p>
+                      <strong class="text-faru-green">Coordinator:</strong>
+                      {' '}{session.coordinator}
+                    </p>
+
+                    <p>
+                      <strong class="text-faru-green">Venue:</strong>
+                      {' '}{session.room}, Rubert Peiris Building
+                    </p>
+
+                  </div>
+
+                  <h4 class="mb-2 mt-4 text-sm font-extrabold text-faru-green">
+                    Research Presentations
+                  </h4>
+
+                  <ol class="divide-y divide-gray-100">
+
+                    {session.papers.map((paper) => (
+                      <li class="py-3">
+
+                        <div class="flex flex-wrap items-center gap-2">
+
+                          <span class="text-[10px] font-bold uppercase tracking-wide text-faru-muted">
+                            {paper.code}
+                          </span>
+
+                          {paper.presentationMode && (
+                            <span class="rounded-md bg-[#EDF5DC] px-1.5 py-0.5 text-[10px] font-semibold text-faru-green">
+                              {paper.presentationMode}
+                            </span>
+                          )}
+
+                        </div>
+
+                        <p class="mt-1 text-sm font-semibold leading-snug text-faru-green">
+                          {paper.title}
+                        </p>
+
+                        <p class="mt-1 text-xs leading-relaxed text-faru-muted">
+                          {paper.authors}
+                        </p>
+
+                      </li>
+                    ))}
+
+                  </ol>
+
+                </div>
+
+              </details>
+            ))}
+
+          </section>
+        ))}
+
+      </div>
+
     </div>
+
+    <!-- Day 2 -->
+    <div data-day-panel="2" class="mt-5 space-y-5" hidden>
+
+      <div class="rounded-2xl border border-[#D6E7C0] bg-white p-4">
+
+        <p class="text-xs font-bold uppercase tracking-wide text-faru-muted">
+          Saturday, 28 November
+        </p>
+
+        <h2 class="mt-1 text-lg font-extrabold text-faru-green">
+          Jetwing Lighthouse Hotel, Galle
+        </h2>
+
+        <p class="mt-1 text-xs text-faru-muted">
+          Complete programme · I³ showcases · Networking
+        </p>
+
+      </div>
+
+      {dayTwoGroups.map((group, index) => (
+        <section class="overflow-hidden rounded-2xl bg-white shadow-sm">
+
+          <div class="bg-[#EDF5DC] px-4 py-3">
+
+            <p class="text-[11px] font-bold uppercase tracking-wider text-faru-green/80">
+              {String(index + 1).padStart(2, '0')} · Programme
+            </p>
+
+            <h3 class="mt-1 text-base font-extrabold leading-snug text-faru-green">
+              {group.title}
+            </h3>
+
+          </div>
+
+          <div class="divide-y divide-gray-100 px-4 py-1">
+
+            {group.items.map((item) => (
+              <div class="flex gap-3 py-2.5">
+
+                <time class="w-[91px] shrink-0 text-[11px] font-bold tabular-nums text-faru-green">
+                  {item.time}
+                </time>
+
+                <div class="min-w-0 flex-1">
+
+                  <p class="text-sm font-semibold leading-snug text-faru-green">
+                    {item.title}
+                  </p>
+
+                  {item.detail && (
+                    <p class="mt-1 text-xs leading-relaxed text-faru-muted">
+                      {item.detail}
+                    </p>
+                  )}
+
+                </div>
+
+              </div>
+            ))}
+
+          </div>
+
+        </section>
+      ))}
+
+    </div>
+
+    <!-- Conference Proceedings -->
+    <a
+      href="https://faru.uom.lk/Conference/#proceedings"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-5 flex items-center justify-between gap-3 rounded-2xl border border-[#D6E7C0] bg-white px-4 py-4 shadow-sm transition-colors hover:bg-[#F0F7F3]"
+    >
+
+      <div class="flex min-w-0 items-center gap-3">
+
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#EDF5DC] text-faru-green">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+        </div>
+
+        <div class="min-w-0">
+          <p class="text-sm font-bold text-faru-green">
+            Conference Proceedings
+          </p>
+
+          <p class="mt-1 text-xs text-faru-muted">
+            Explore FARU research publications
+          </p>
+        </div>
+
+      </div>
+
+      <span class="shrink-0 text-lg text-faru-green" aria-hidden="true">↗</span>
+
+    </a>
+
   </section>
 
-  <section class="bg-white px-5 py-6">
-    <h2 class="text-lg font-bold text-faru-green">
-      Technical Programme
-    </h2>
-    <div class="mt-3 rounded-xl border border-faru-turquoise bg-[#eef7f8] p-4">
-      <p class="text-sm font-semibold text-faru-green">
-        Detailed programme to be announced
-      </p>
-      <p class="mt-2 text-sm leading-6 text-faru-muted">
-        Session times, research presentations, technical sessions
-        and panel member information will be added once confirmed.
-      </p>
-    </div>
-  </section>
+  <!-- Programme Navigation -->
+  <script>
+    const dayButtons =
+      document.querySelectorAll<HTMLButtonElement>('[data-day-button]');
+
+    const dayPanels =
+      document.querySelectorAll<HTMLElement>('[data-day-panel]');
+
+    const viewButtons =
+      document.querySelectorAll<HTMLButtonElement>('[data-view-button]');
+
+    const viewPanels =
+      document.querySelectorAll<HTMLElement>('[data-view-panel]');
+
+    const viewSwitcher =
+      document.querySelector<HTMLElement>('[data-view-switcher]');
+
+    function selectView(view: 'agenda' | 'technical') {
+      viewPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.viewPanel !== view;
+      });
+
+      viewButtons.forEach((button) => {
+        const active = button.dataset.viewButton === view;
+
+        button.setAttribute('aria-pressed', String(active));
+        button.classList.toggle('bg-faru-green', active);
+        button.classList.toggle('text-white', active);
+        button.classList.toggle('text-faru-green', !active);
+      });
+    }
+
+    function selectDay(day: '1' | '2') {
+      dayPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.dayPanel !== day;
+      });
+
+      dayButtons.forEach((button) => {
+        const active = button.dataset.dayButton === day;
+
+        button.setAttribute('aria-pressed', String(active));
+        button.classList.toggle('bg-faru-green', active);
+        button.classList.toggle('text-white', active);
+        button.classList.toggle('text-faru-green', !active);
+      });
+
+      if (viewSwitcher) {
+        viewSwitcher.hidden = day === '2';
+        viewSwitcher.style.display = day === '2' ? 'none' : '';
+      }
+
+      if (day === '2') {
+        selectView('agenda');
+      }
+    }
+
+    function showTechnicalSessions() {
+      selectDay('1');
+      selectView('technical');
+
+      document
+        .getElementById('programme-switcher')
+        ?.scrollIntoView({ block: 'start' });
+    }
+
+    dayButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectDay(
+          button.dataset.dayButton === '2' ? '2' : '1'
+        );
+      });
+    });
+
+    viewButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectView(
+          button.dataset.viewButton === 'technical'
+            ? 'technical'
+            : 'agenda'
+        );
+      });
+    });
+
+    document
+      .querySelector('[data-explore-technical]')
+      ?.addEventListener('click', showTechnicalSessions);
+
+    document
+      .querySelector('[data-back-to-agenda]')
+      ?.addEventListener('click', () => {
+        selectView('agenda');
+
+        document
+          .getElementById('programme-switcher')
+          ?.scrollIntoView({ block: 'start' });
+      });
+
+    const params = new URLSearchParams(window.location.search);
+
+    selectView('agenda');
+    selectDay(params.get('day') === '2' ? '2' : '1');
+
+    if (params.get('view') === 'technical') {
+      showTechnicalSessions();
+    }
+
+    const targetId =
+      decodeURIComponent(window.location.hash.slice(1));
+
+    const target =
+      targetId ? document.getElementById(targetId) : null;
+
+    if (target instanceof HTMLDetailsElement) {
+      selectDay('1');
+      selectView('technical');
+
+      target.open = true;
+
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ block: 'start' });
+      });
+    }
+  </script>
+
+  <!-- Sanity Live Programme Status -->
+  <script>
+    import { sanityClient } from '../lib/sanity';
+
+    interface SessionUpdate {
+      programmeItem?: string;
+      sessionName?: string;
+      status?: string;
+    }
+
+    const sessionQuery = `
+      *[_type == "conferenceUpdate" && category == "session"]
+      | order(_updatedAt desc) {
+        programmeItem,
+        sessionName,
+        status
+      }
+    `;
+
+    const programmeRows = new Map<string, HTMLElement>();
+
+    function registerRows(selector: string, prefix: string) {
+      document.querySelectorAll<HTMLElement>(selector).forEach((row, index) => {
+        const id = `${prefix}-${String(index + 1).padStart(2, '0')}`;
+        programmeRows.set(id, row);
+      });
+    }
+
+    registerRows(
+      'section[aria-labelledby="inauguration-heading"] .divide-y > div',
+      'd1-opening'
+    );
+
+    registerRows(
+      'section[aria-labelledby="closing-heading"] .divide-y > div',
+      'd1-closing'
+    );
+
+    registerRows(
+      '[data-view-panel="technical"] details[id]',
+      'd1-technical'
+    );
+
+    const dayTwoPrefixes = [
+      'd2-opening',
+      'd2-showcase',
+      'd2-networking',
+    ];
+
+    document
+      .querySelectorAll<HTMLElement>('[data-day-panel="2"] > section')
+      .forEach((section, groupIndex) => {
+        const prefix = dayTwoPrefixes[groupIndex];
+
+        if (!prefix) return;
+
+        section
+          .querySelectorAll<HTMLElement>('.divide-y > div')
+          .forEach((row, index) => {
+            const id = `${prefix}-${String(index + 1).padStart(2, '0')}`;
+            programmeRows.set(id, row);
+          });
+      });
+
+    function getProgrammeItem(update: SessionUpdate) {
+      if (update.programmeItem) return update.programmeItem;
+
+      const match = update.sessionName
+        ?.trim()
+        .match(/^technical session\s*0*(\d{1,2})$/i);
+
+      return match
+        ? `d1-technical-${match[1].padStart(2, '0')}`
+        : null;
+    }
+
+    function setOngoing(row: HTMLElement, ongoing: boolean) {
+      const existing = row.querySelector<HTMLElement>('[data-ongoing-badge]');
+
+      if (!ongoing) {
+        existing?.remove();
+        return;
+      }
+
+      if (existing) return;
+
+      const badge = document.createElement('span');
+
+      badge.dataset.ongoingBadge = 'true';
+      badge.className =
+        'shrink-0 self-start rounded-md bg-[#DDF3D4] px-2 py-1 text-[10px] font-bold text-[#1E682D]';
+
+      badge.textContent = '● Ongoing';
+
+      if (row instanceof HTMLDetailsElement) {
+        const summary = row.querySelector('summary');
+        const arrow = summary?.lastElementChild;
+
+        if (arrow) {
+          summary?.insertBefore(badge, arrow);
+        } else {
+          summary?.append(badge);
+        }
+      } else {
+        row.append(badge);
+      }
+    }
+
+    let requestVersion = 0;
+
+    async function updateProgrammeStatuses() {
+      const version = ++requestVersion;
+
+      try {
+        const updates =
+          await sanityClient.fetch<SessionUpdate[]>(sessionQuery);
+
+        if (version !== requestVersion) return;
+
+        const latestStatuses = new Map<string, string>();
+
+        for (const update of updates) {
+          const itemId = getProgrammeItem(update);
+
+          if (itemId && !latestStatuses.has(itemId)) {
+            latestStatuses.set(itemId, update.status || '');
+          }
+        }
+
+        programmeRows.forEach((row, itemId) => {
+          setOngoing(
+            row,
+            latestStatuses.get(itemId) === 'inProgress'
+          );
+        });
+      } catch (error) {
+        console.error('Failed to update Programme statuses:', error);
+      }
+    }
+
+    void updateProgrammeStatuses();
+
+    const subscription = sanityClient.listen(
+      '*[_type == "conferenceUpdate" && category == "session"]',
+      {},
+      {
+        visibility: 'query',
+        includeResult: false,
+      }
+    ).subscribe({
+      next(event) {
+        if (event.type === 'mutation') {
+          void updateProgrammeStatuses();
+        }
+      },
+      error(error) {
+        console.error('Programme live listener error:', error);
+      },
+    });
+
+    document.addEventListener(
+      'astro:before-swap',
+      () => subscription.unsubscribe(),
+      { once: true }
+    );
+  </script>
+
 </BaseLayout>

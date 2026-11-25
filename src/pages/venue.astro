@@ -1,115 +1,216 @@
 
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
 
-const university = 'University of Moratuwa, Katubedda, Sri Lanka';
-const hotel = 'Jetwing Lighthouse Hotel, Galle, Sri Lanka';
-
-const campusMap =
-  `https://www.google.com/maps?q=${encodeURIComponent(university)}&output=embed`;
-
-const universityLink =
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(university)}`;
-
-const hotelLink =
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel)}`;
-
-const directionsLink =
-  `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(university)}&destination=${encodeURIComponent(hotel)}&travelmode=driving`;
+const venues = [
+  {
+    day: 'Day 01',
+    date: 'Friday, 27 November 2026',
+    name: 'Rubert Peiris Building',
+    organisation: 'University of Moratuwa',
+    location: 'Katubedda, Moratuwa 10400, Sri Lanka',
+    activities: [
+      {
+        title: 'Conference Inauguration & Closing',
+        detail: 'Rubert Peiris Auditorium',
+      },
+      {
+        title: 'Technical Sessions',
+        detail: 'Rubert Peiris Building · Rooms A–E',
+      },
+    ],
+    directions:
+      'https://www.google.com/maps/dir/?api=1&destination=6.7956901%2C79.9021866',
+    programmeUrl: '/programme/?day=1',
+  },
+  {
+    day: 'Day 02',
+    date: 'Saturday, 28 November 2026',
+    name: 'Jetwing Lighthouse Hotel',
+    organisation: 'FARU 2026 · Day 2 Venue',
+    location: 'Dadella, Galle 80000, Sri Lanka',
+    activities: [
+      {
+        title: 'Day 2 Conference Programme',
+        detail: 'Keynote, featured speakers and I³ showcases',
+      },
+      {
+        title: 'Networking Activities',
+        detail: 'Networking and conference closing activities',
+      },
+    ],
+    directions:
+      'https://www.google.com/maps/dir/?api=1&destination=Jetwing%20Lighthouse%2C%20Dadella%2C%20Galle%2C%20Sri%20Lanka',
+    programmeUrl: '/programme/?day=2',
+  },
+]
 ---
 
 <BaseLayout title="Venue">
-  <section class="bg-faru-green px-5 py-7 text-white">
-    <p class="text-xs font-semibold uppercase tracking-widest text-faru-turquoise">
+
+  <!-- Page Header -->
+  <section class="bg-faru-green px-5 py-6 text-white">
+    <p class="text-xs font-semibold uppercase tracking-widest text-faru-lime">
       FARU 2026
     </p>
-    <h1 class="mt-2 text-[28px] font-extrabold">
+
+    <h1 class="mt-2 text-[27px] font-extrabold">
       Conference Venues
     </h1>
+
     <p class="mt-2 text-sm text-white/85">
-      Locations and travel directions
+      Venue information, locations and directions
     </p>
   </section>
 
-  <section class="bg-[#eef7f8] px-4 py-6">
-    <article class="overflow-hidden rounded-2xl bg-white shadow-sm">
-      <div class="p-4">
-        <span class="rounded-md bg-faru-blue px-3 py-2 text-xs font-bold text-faru-green">
-          Day 01 · 27 November 2026
-        </span>
+  <!-- Venue Cards -->
+  <div class="space-y-4 bg-[#F7FAF3] px-4 py-5">
 
-        <h2 class="mt-5 text-xl font-bold text-faru-green">
-          University of Moratuwa
-        </h2>
+    {venues.map((venue, index) => (
 
-        <p class="mt-2 text-sm text-faru-muted">
-          Katubedda, Sri Lanka
-        </p>
-      </div>
+      <section
+        class="overflow-hidden rounded-2xl border border-[#E3E9E2] bg-white shadow-sm"
+        aria-label={`${venue.day} conference venue`}
+      >
 
-      <iframe
-        src={campusMap}
-        title="University of Moratuwa location"
-        class="h-[280px] w-full border-0"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+        <!-- Venue Details -->
+        <div class="px-4 pb-4 pt-5">
 
-      <div class="p-4">
-        <a
-          href={universityLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex min-h-12 items-center justify-center rounded-xl bg-faru-green px-4 text-center text-sm font-bold text-white"
-        >
-          Open Campus in Google Maps
-        </a>
+          <div
+            class:list={[
+              'mb-3 inline-flex rounded-lg px-3 py-2',
+              index === 0 ? 'bg-[#EDF5DC]' : 'bg-[#E5F3F1]',
+            ]}
+          >
+            <span class="text-xs font-bold text-faru-green">
+              {venue.day} · {venue.date}
+            </span>
+          </div>
 
-        <p class="mt-3 text-xs leading-5 text-faru-muted">
-          The exact conference hall and registration location
-          within the campus will be added after confirmation.
-        </p>
-      </div>
-    </article>
-  </section>
+          <h2 class="text-xl font-extrabold leading-tight text-faru-green">
+            {venue.name}
+          </h2>
 
-  <section class="bg-faru-cream px-4 py-6">
-    <article class="overflow-hidden rounded-2xl bg-white p-4 shadow-sm">
-      <span class="rounded-md bg-faru-blue px-3 py-2 text-xs font-bold text-faru-green">
-        Day 02 · 28 November 2026
-      </span>
+          <p class="mt-1 text-sm font-medium text-[#344B40]">
+            {venue.organisation}
+          </p>
 
-      <h2 class="mt-5 text-xl font-bold text-faru-green">
-        Jetwing Lighthouse Hotel
-      </h2>
+          <p class="mt-3 flex items-start gap-2 text-xs leading-relaxed text-faru-muted">
 
-      <p class="mt-2 text-sm text-faru-muted">
-        Galle, Sri Lanka
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mt-0.5 shrink-0"
+              aria-hidden="true"
+            >
+              <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+
+            <span>{venue.location}</span>
+
+          </p>
+
+        </div>
+
+        <!-- Conference Activities -->
+        <div class="border-t border-gray-100 px-4 py-4">
+
+          <h3 class="mb-3 text-sm font-bold text-faru-green">
+            Conference Activities
+          </h3>
+
+          <div class="space-y-3">
+
+            {venue.activities.map((activity) => (
+
+              <div class="flex items-start gap-3">
+
+                <div class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#7B9E41]"></div>
+
+                <div class="min-w-0 flex-1">
+
+                  <p class="text-sm font-semibold leading-snug text-[#344B40]">
+                    {activity.title}
+                  </p>
+
+                  <p class="mt-1 text-xs leading-relaxed text-faru-muted">
+                    {activity.detail}
+                  </p>
+
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+        <!-- Directions and Programme -->
+        <div class="px-4 pb-5 pt-2">
+
+          <a
+            href={venue.directions}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-faru-green px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-[#245A3A]"
+            aria-label={`Get directions to ${venue.name} in Google Maps`}
+          >
+
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m3 11 9-9 9 9-9 11-9-11z" />
+              <path d="M9 15v-4h6M12 11l3 3" />
+            </svg>
+
+            Get Directions
+
+          </a>
+
+          <a
+            href={venue.programmeUrl}
+            class="mt-4 block text-center text-xs font-semibold text-faru-green underline underline-offset-4"
+          >
+            View {venue.day} Programme
+          </a>
+
+        </div>
+
+      </section>
+
+    ))}
+
+    <!-- Travel Information -->
+    <section class="rounded-xl border border-[#E3E9E2] bg-white p-4">
+
+      <h3 class="text-sm font-bold text-faru-green">
+        Travel Information
+      </h3>
+
+      <p class="mt-2 text-xs leading-relaxed text-faru-muted">
+        Directions open in Google Maps, where you can select
+        your starting point and preferred travel method.
       </p>
 
-      <p class="mt-3 text-sm leading-6 text-faru-muted">
-        Venue for the announced Day 02 keynote sessions.
-      </p>
+    </section>
 
-      <div class="mt-5 space-y-3">
-        <a
-          href={directionsLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex min-h-12 items-center justify-center rounded-xl bg-faru-green px-4 text-center text-sm font-bold text-white"
-        >
-          Directions from UoM to Jetwing Lighthouse
-        </a>
+  </div>
 
-        <a
-          href={hotelLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex min-h-12 items-center justify-center rounded-xl border border-faru-green px-4 text-center text-sm font-bold text-faru-green"
-        >
-          View Hotel Location
-        </a>
-      </div>
-    </article>
-  </section>
 </BaseLayout>

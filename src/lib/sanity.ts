@@ -1,4 +1,3 @@
-
 import {createClient} from '@sanity/client'
 
 export const sanityClient = createClient({
@@ -6,7 +5,7 @@ export const sanityClient = createClient({
   dataset: 'production',
   apiVersion: '2026-11-22',
   perspective: 'published',
-  useCdn: true,
+  useCdn: false,
 })
 
 export const updatesQuery = `
@@ -15,13 +14,15 @@ export const updatesQuery = `
     _id,
     _createdAt,
     _updatedAt,
+    category,
+    programmeItem,
+    status,
     title,
     message,
-    category,
+    priority,
+    sendPushNotification,
     sessionName,
     venue,
-    status,
-    priority,
     featured,
     featuredUntil
   }

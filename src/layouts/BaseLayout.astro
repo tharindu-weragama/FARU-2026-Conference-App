@@ -1,6 +1,6 @@
-
 ---
 import '../styles/global.css';
+import SiteFooter from '../components/SiteFooter.astro'
 
 interface Props {
   title: string;
@@ -24,9 +24,9 @@ const navigation = [
     icon: 'M7 3v4M17 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z',
   },
   {
-    label: 'Speakers',
-    href: '/speakers/',
-    icon: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8a4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+    label: 'Updates',
+    href: '/updates/',
+    icon: 'M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4',
   },
   {
     label: 'Venue',
@@ -50,6 +50,34 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
     <meta name="theme-color" content="#8BCBD2" />
 
     <title>{title} | FARU 2026</title>
+
+    <script
+      is:inline
+      src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+      defer
+    ></script>
+
+    <script is:inline>
+      if (window.location.hostname === 'localhost') {
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+        window.OneSignalDeferred.push(async function (OneSignal) {
+          try {
+            await OneSignal.init({
+              appId: 'dbeb99b6-9240-45d7-a469-ef9f110bcc92',
+              safari_web_id: 'web.onesignal.auto.40e8587d-66e6-4615-b716-6bb570edb005',
+              notifyButton: {
+                enable: true,
+              },
+              allowLocalhostAsSecureOrigin: true,
+              serviceWorkerPath: '/OneSignalSDKWorker.js',
+            });
+          } catch (error) {
+            console.error('OneSignal initialization failed:', error);
+          }
+        });
+      }
+    </script>
   </head>
 
   <body class="m-0 bg-[#eaf1ef] font-sans antialiased">
@@ -84,6 +112,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
         class="min-h-0 flex-1 overflow-y-auto overscroll-contain"
       >
         <slot />
+        <SiteFooter />
       </main>
 
       <nav

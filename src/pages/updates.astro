@@ -3,26 +3,179 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 ---
 
-<BaseLayout title="Live Updates">
-  <section class="bg-faru-green px-5 py-7 text-white">
+<BaseLayout title="Conference Updates">
+
+  <section class="bg-faru-green px-5 py-6 text-white">
     <p class="text-xs font-semibold uppercase tracking-widest text-faru-lime">
       FARU 2026
     </p>
-    <h1 class="mt-2 text-2xl font-bold">Live Conference Updates</h1>
-    <p class="mt-2 text-sm text-white/80">
-      Session information and official conference announcements
+
+    <h1 class="mt-2 text-[27px] font-extrabold leading-tight">
+      Conference Updates
+    </h1>
+
+    <p class="mt-2 text-sm text-white/85">
+      Session activity and official conference announcements
     </p>
   </section>
 
-  <section class="min-h-[400px] bg-faru-cream px-4 py-6">
-    <h2 class="mb-4 text-lg font-bold text-faru-green">
-      Latest Updates
-    </h2>
+  <div class="space-y-6 bg-[#F7FAF3] px-4 py-5">
 
-    <div id="updates-feed" class="space-y-4" aria-live="polite">
-      <p class="text-sm text-faru-muted">Loading announcements...</p>
-    </div>
-  </section>
+    <!-- Session Updates -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#194525"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 12h4l3-8 4 16 3-8h4" />
+          </svg>
+
+          <h2 class="text-lg font-extrabold text-faru-green">
+            Session Updates
+          </h2>
+        </div>
+
+        <span class="text-xs text-faru-muted">
+          Latest 5
+        </span>
+      </div>
+
+      <p class="text-xs leading-relaxed text-faru-muted">
+        Latest technical session starts, completions and changes
+      </p>
+
+      <div
+        id="session-feed"
+        class="overflow-hidden rounded-2xl border border-[#DDE7D7] bg-white shadow-sm"
+        aria-live="polite"
+      >
+        <p class="p-4 text-sm text-faru-muted">
+          Loading session updates...
+        </p>
+      </div>
+    </section>
+
+    <!-- Important Announcements -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#194525"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 11v2a2 2 0 0 0 2 2h2l2 5h3l-2-5h2l8 4V5l-8 4H5a2 2 0 0 0-2 2z" />
+          </svg>
+
+          <h2 class="text-lg font-extrabold text-faru-green">
+            Important Announcements
+          </h2>
+        </div>
+
+        <span class="shrink-0 text-xs text-faru-muted">
+          Latest 3
+        </span>
+      </div>
+
+      <p class="text-xs leading-relaxed text-faru-muted">
+        Official notices and important conference information
+      </p>
+
+      <div
+        id="announcement-feed"
+        class="space-y-3"
+        aria-live="polite"
+      >
+        <div class="rounded-2xl border border-[#D6E7C0] bg-[#EDF5DC] p-4">
+          <p class="text-sm text-faru-muted">
+            Loading announcements...
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="space-y-3">
+      <div class="flex items-center gap-2">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#194525"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" />
+        </svg>
+
+        <h2 class="text-lg font-extrabold text-faru-green">
+          Recent Activity
+        </h2>
+      </div>
+
+      <details
+        class="group overflow-hidden rounded-2xl border border-[#DDE7D7] bg-white shadow-sm"
+      >
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between gap-3 bg-[#F0F3ED] px-4 py-3 [&::-webkit-details-marker]:hidden"
+        >
+          <div>
+            <p class="text-sm font-bold text-faru-green">
+              View Earlier Updates
+            </p>
+
+            <p
+              id="history-count"
+              class="mt-1 text-xs text-faru-muted"
+            >
+              Previous session events and announcements
+            </p>
+          </div>
+
+          <span
+            class="text-lg text-faru-green transition-transform group-open:rotate-180"
+            aria-hidden="true"
+          >
+            ⌄
+          </span>
+        </summary>
+
+        <div
+          id="history-feed"
+          class="divide-y divide-gray-100"
+        >
+          <p class="p-4 text-sm text-faru-muted">
+            Loading earlier updates...
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <p class="pb-2 text-center text-[11px] leading-relaxed text-faru-muted">
+      Official updates are published by the FARU organising team.
+    </p>
+
+  </div>
+
 </BaseLayout>
 
 <script>
@@ -30,70 +183,508 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
   interface ConferenceUpdate {
     _id: string
-    title: string
-    message: string
+    _createdAt: string
+    _updatedAt?: string
+    category?: string
+    programmeItem?: string
+    status?: string
+    title?: string
+    message?: string
+    priority?: string
+    sendPushNotification?: boolean
     sessionName?: string
     venue?: string
-    status?: string
-    priority?: string
+    featured?: boolean
+    featuredUntil?: string
   }
 
-  async function loadUpdates() {
-    const feed = document.getElementById('updates-feed')
-    if (!feed) return
+  const statusLabels: Record<string, string> = {
+    scheduled: 'Scheduled',
+    inProgress: 'Ongoing',
+    ongoing: 'Ongoing',
+    started: 'Ongoing',
+    delayed: 'Delayed',
+    completed: 'Completed',
+    cancelled: 'Cancelled',
+  }
 
-    try {
-      const updates = await sanityClient.fetch<ConferenceUpdate[]>(updatesQuery)
+  function numberedItems(prefix: string, titles: string[]) {
+    return titles.map((title, index): [string, string] => [
+      `${prefix}-${String(index + 1).padStart(2, '0')}`,
+      title,
+    ])
+  }
 
-      if (updates.length === 0) {
-        feed.textContent = 'No conference updates available yet.'
-        return
-      }
+  const programmeItems = new Map<string, string>([
+    ...numberedItems('d1-opening', [
+      'Day 1 · 08:30 · Registration & Welcome',
+      'Day 1 · 09:00 · Arrival of Guests and Keynote Speakers',
+      'Day 1 · 09:05 · National Anthem',
+      'Day 1 · 09:10 · Lighting of Oil Lamp',
+      'Day 1 · 09:15 · Welcome Address',
+      'Day 1 · 09:25 · Introduction to FARU Theme',
+      'Day 1 · 09:35 · Address by the Chief Guest',
+      'Day 1 · 09:45 · Introduction to the Keynote Speaker',
+      'Day 1 · 09:50 · Keynote Address',
+      'Day 1 · 10:20 · Introduction to Conference Line-up',
+      'Day 1 · 10:30 · Refreshments',
+    ]),
 
-      feed.replaceChildren()
+    ...Array.from({length: 15}, (_, index): [string, string] => [
+      `d1-technical-${String(index + 1).padStart(2, '0')}`,
+      `Day 1 · Technical Session ${String(index + 1).padStart(2, '0')}`,
+    ]),
 
-      for (const update of updates) {
-        const card = document.createElement('article')
-        card.className = 'rounded-xl border border-gray-200 bg-white p-4 shadow-sm'
+    ...numberedItems('d1-closing', [
+      'Day 1 · 16:45 · Refreshments',
+      'Day 1 · 17:15 · Conference Sum-up and Next Year Theme',
+      'Day 1 · 17:30 · Presentation of Awards',
+      'Day 1 · 17:45 · Vote of Thanks',
+      'Day 1 · 17:55 · End of Day 1',
+    ]),
 
-        const heading = document.createElement('h3')
-        heading.className = 'text-base font-bold text-faru-green'
-        heading.textContent = update.title
+    ...numberedItems('d2-opening', [
+      'Day 2 · 06:30 · Departure from University of Moratuwa',
+      'Day 2 · 08:30 · Registration',
+      'Day 2 · 09:00 · Welcome Address',
+      'Day 2 · 09:10 · Introduction to Keynote Speaker',
+      'Day 2 · 09:15 · Keynote Address',
+      'Day 2 · 09:45 · Featured Speakers Session',
+      'Day 2 · 10:30 · Refreshments',
+    ]),
 
-        const message = document.createElement('p')
-        message.className = 'mt-3 text-sm leading-6 text-faru-muted'
-        message.textContent = update.message
+    ...numberedItems('d2-showcase', [
+      'Day 2 · 11:00 · Department Showcase 1',
+      'Day 2 · 11:15 · Department Showcase 2',
+      'Day 2 · 11:30 · Entertainment Performance',
+      'Day 2 · 11:45 · Department Showcase 3',
+      'Day 2 · 12:00 · Department Showcase 4',
+      'Day 2 · 12:15 · Department Showcase 5',
+      'Day 2 · 12:30 · Entertainment Performance',
+      'Day 2 · 12:45 · Closing Remarks',
+      'Day 2 · 12:55 · Vote of Thanks',
+    ]),
 
-        card.append(heading, message)
+    ...numberedItems('d2-networking', [
+      'Day 2 · 13:00 · Lunch',
+      'Day 2 · 14:00 · Networking and Entertainment',
+      'Day 2 · 16:00 · Refreshments',
+      'Day 2 · 16:30 · Group Photograph and Return',
+      'Day 2 · 17:00 · Arrival at University of Moratuwa',
+    ]),
+  ])
 
-        if (update.sessionName || update.venue || update.status) {
-          const details = document.createElement('p')
-          details.className = 'mt-3 text-xs font-medium text-faru-green'
+  function formatTime(value?: string) {
+    if (!value) return ''
 
-          const statusLabels: Record<string, string> = {
-            scheduled: 'Scheduled',
-            inProgress: 'In Progress',
-            delayed: 'Delayed',
-            completed: 'Completed',
-            cancelled: 'Cancelled',
-          }
+    const date = new Date(value)
+    if (Number.isNaN(date.getTime())) return ''
 
-          details.textContent = [
-            update.sessionName,
-            update.venue,
-            update.status ? statusLabels[update.status] ?? update.status : '',
-          ].filter(Boolean).join(' • ')
+    return new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Colombo',
+      day: 'numeric',
+      month: 'short',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    }).format(date)
+  }
 
-          card.append(details)
-        }
+  function isSessionUpdate(update: ConferenceUpdate) {
+    return update.category === 'session'
+  }
 
-        feed.append(card)
-      }
-    } catch (error) {
-      console.error('Failed to load conference updates:', error)
-      feed.textContent = 'Unable to load updates. Please try again later.'
+  function isPinned(update: ConferenceUpdate) {
+    if (isSessionUpdate(update) || !update.featured) return false
+    if (!update.featuredUntil) return true
+
+    const expiry = new Date(update.featuredUntil).getTime()
+    return Number.isFinite(expiry) && expiry > Date.now()
+  }
+
+  function sessionLabel(update: ConferenceUpdate) {
+    if (update.programmeItem) {
+      return programmeItems.get(update.programmeItem) ?? update.programmeItem
+    }
+
+    return update.sessionName?.trim() || 'Conference session'
+  }
+
+  function sessionMessage(update: ConferenceUpdate, label: string) {
+    switch (update.status) {
+      case 'inProgress':
+      case 'ongoing':
+      case 'started':
+        return `${label} is now in progress.`
+
+      case 'completed':
+        return `${label} has been completed.`
+
+      case 'delayed':
+        return `${label} has been delayed.`
+
+      case 'cancelled':
+        return `${label} has been cancelled.`
+
+      case 'scheduled':
+        return `${label} is scheduled.`
+
+      default:
+        return `${label} has a new status update.`
     }
   }
 
-  loadUpdates()
+  function createEmptyMessage(message: string) {
+    const element = document.createElement('p')
+    element.className = 'p-4 text-sm leading-relaxed text-faru-muted'
+    element.textContent = message
+    return element
+  }
+
+  function getSessionMeta(update: ConferenceUpdate) {
+    const id = update.programmeItem || ''
+    const technical = id.match(/^d1-technical-(\d{2})$/)
+
+    if (technical) {
+      const number = Number(technical[1])
+      const room = `Room ${'ABCDE'[(number - 1) % 5]}`
+      const time = number <= 5
+        ? '11:00–12:30'
+        : number <= 10
+          ? '13:30–15:00'
+          : '15:15–16:45'
+
+      return ['Day 1', update.venue || room, time].join(' · ')
+    }
+
+    const label = sessionLabel(update)
+
+    const day = id.startsWith('d1-')
+      ? 'Day 1'
+      : id.startsWith('d2-')
+        ? 'Day 2'
+        : ''
+
+    const time = label.match(/\b\d{2}:\d{2}\b/)?.[0] || ''
+
+    const venue = update.venue || (
+      id.startsWith('d1-opening') || id.startsWith('d1-closing')
+        ? 'Rubert Peiris Auditorium'
+        : id.startsWith('d2-')
+          ? 'Jetwing Lighthouse'
+          : ''
+    )
+
+    return [day, venue, time].filter(Boolean).join(' · ')
+  }
+
+  function createUpdateCard(
+    update: ConferenceUpdate,
+    type: 'session' | 'announcement' | 'history'
+  ) {
+    const session = isSessionUpdate(update)
+    const pinned = isPinned(update)
+    const urgent = !session && update.priority === 'urgent'
+    const hasProgrammeItem = session && Boolean(update.programmeItem)
+
+    const card = document.createElement('article')
+
+    card.className = type === 'history'
+      ? 'p-4'
+      : type === 'session'
+        ? 'p-4'
+        : urgent
+          ? 'rounded-2xl border border-[#E9D4CB] border-l-4 border-l-[#B85C40] bg-white p-4 shadow-sm'
+          : pinned
+            ? 'rounded-2xl border border-[#C9DEA9] bg-[#EDF5DC] p-4'
+            : 'rounded-2xl border border-[#DDE7D7] bg-white p-4 shadow-sm'
+
+    const header = document.createElement('div')
+    header.className = 'flex items-start justify-between gap-3'
+
+    const category = document.createElement('span')
+    category.className =
+      'text-[10px] font-bold uppercase tracking-wide text-[#55764C]'
+
+    category.textContent = session
+      ? 'SESSION UPDATE'
+      : update.priority === 'urgent'
+        ? 'URGENT ANNOUNCEMENT'
+        : update.priority === 'important'
+          ? 'IMPORTANT ANNOUNCEMENT'
+          : pinned
+            ? 'PINNED ANNOUNCEMENT'
+            : 'OFFICIAL ANNOUNCEMENT'
+
+    const time = document.createElement('time')
+    time.className =
+      'shrink-0 text-right text-[10px] text-faru-muted'
+
+    time.dateTime = update._createdAt
+    time.textContent = formatTime(update._createdAt)
+
+    header.append(category, time)
+
+    const heading = document.createElement('div')
+    heading.className = 'mt-2 flex items-start justify-between gap-2'
+
+    const title = document.createElement('h3')
+    title.className =
+      'min-w-0 text-sm font-extrabold leading-snug text-faru-green'
+
+    if (hasProgrammeItem) {
+      title.textContent = sessionLabel(update)
+        .replace(/^Day [12] · (?:\d{2}:\d{2} · )?/, '')
+    } else if (session) {
+      title.textContent =
+        update.title?.trim() || sessionLabel(update)
+    } else {
+      title.textContent =
+        update.title?.trim() || 'Important Announcement'
+    }
+
+    heading.append(title)
+
+    if (session && update.status) {
+      const ongoing = ['inProgress', 'ongoing', 'started']
+        .includes(update.status)
+
+      const badge = document.createElement('span')
+
+      badge.className = ongoing
+        ? 'shrink-0 whitespace-nowrap rounded-md bg-[#DDF3D4] px-2 py-1 text-[10px] font-bold text-[#1E682D]'
+        : 'shrink-0 whitespace-nowrap rounded-md bg-[#EDF1EA] px-2 py-1 text-[10px] font-bold text-[#4C634B]'
+
+      badge.textContent = ongoing
+        ? '● Ongoing'
+        : statusLabels[update.status] ?? update.status
+
+      heading.append(badge)
+    }
+
+    card.append(header, heading)
+
+    if (!hasProgrammeItem) {
+      const messageText = session
+        ? update.message?.trim() ||
+          sessionMessage(update, sessionLabel(update))
+        : update.message?.trim() || ''
+
+      if (messageText) {
+        const message = document.createElement('p')
+
+        message.className =
+          'mt-2 whitespace-pre-line text-[13px] leading-relaxed text-faru-muted'
+
+        message.textContent = messageText
+        card.append(message)
+      }
+    }
+
+    if (session) {
+      const details = hasProgrammeItem
+        ? getSessionMeta(update)
+        : update.venue || ''
+
+      if (details) {
+        const footer = document.createElement('p')
+
+        footer.className =
+          'mt-2 text-[11px] font-medium leading-relaxed text-[#55764C]'
+
+        footer.textContent = details
+        card.append(footer)
+      }
+    }
+
+    return card
+  }
+
+  function appendSessionUpdates(
+    feed: HTMLElement,
+    updates: ConferenceUpdate[]
+  ) {
+    feed.replaceChildren()
+
+    if (updates.length === 0) {
+      feed.append(
+        createEmptyMessage(
+          'No session updates available at the moment.'
+        )
+      )
+      return
+    }
+
+    updates.forEach((update, index) => {
+      if (index > 0) {
+        const divider = document.createElement('div')
+        divider.className = 'border-t border-gray-100'
+        feed.append(divider)
+      }
+
+      feed.append(createUpdateCard(update, 'session'))
+    })
+  }
+
+  function appendAnnouncements(
+    feed: HTMLElement,
+    updates: ConferenceUpdate[]
+  ) {
+    feed.replaceChildren()
+
+    if (updates.length === 0) {
+      const empty = document.createElement('div')
+
+      empty.className =
+        'rounded-2xl border border-[#D6E7C0] bg-[#EDF5DC]'
+
+      empty.append(
+        createEmptyMessage(
+          'No official announcements at the moment.'
+        )
+      )
+
+      feed.append(empty)
+      return
+    }
+
+    updates.forEach((update) => {
+      feed.append(createUpdateCard(update, 'announcement'))
+    })
+  }
+
+  function appendHistory(
+    feed: HTMLElement,
+    updates: ConferenceUpdate[]
+  ) {
+    feed.replaceChildren()
+
+    if (updates.length === 0) {
+      feed.append(
+        createEmptyMessage('No earlier activity available.')
+      )
+      return
+    }
+
+    updates.forEach((update) => {
+      feed.append(createUpdateCard(update, 'history'))
+    })
+  }
+
+  function renderUpdates(updates: ConferenceUpdate[]) {
+    const sessionFeed =
+      document.getElementById('session-feed')
+
+    const announcementFeed =
+      document.getElementById('announcement-feed')
+
+    const historyFeed =
+      document.getElementById('history-feed')
+
+    const historyCount =
+      document.getElementById('history-count')
+
+    if (
+      !sessionFeed ||
+      !announcementFeed ||
+      !historyFeed ||
+      !historyCount
+    ) return
+
+    const sorted = [...updates].sort(
+      (a, b) =>
+        new Date(b._createdAt).getTime() -
+        new Date(a._createdAt).getTime()
+    )
+
+    const allSessions = sorted.filter(isSessionUpdate)
+
+    const allAnnouncements = sorted.filter(
+      (update) => !isSessionUpdate(update)
+    )
+
+    const latestSessions = allSessions.slice(0, 5)
+    const latestAnnouncements = allAnnouncements.slice(0, 3)
+
+    const history = [
+      ...allSessions.slice(5),
+      ...allAnnouncements.slice(3),
+    ].sort(
+      (a, b) =>
+        new Date(b._createdAt).getTime() -
+        new Date(a._createdAt).getTime()
+    )
+
+    appendSessionUpdates(sessionFeed, latestSessions)
+    appendAnnouncements(announcementFeed, latestAnnouncements)
+    appendHistory(historyFeed, history)
+
+    historyCount.textContent = history.length === 0
+      ? 'No earlier updates yet'
+      : `${history.length} earlier update${history.length === 1 ? '' : 's'}`
+  }
+
+  let loadVersion = 0
+
+  async function loadUpdates() {
+    const version = ++loadVersion
+
+    try {
+      const updates =
+        await sanityClient.fetch<ConferenceUpdate[]>(updatesQuery)
+
+      if (version === loadVersion) {
+        renderUpdates(updates)
+      }
+    } catch (error) {
+      console.error(
+        'Failed to load conference updates:',
+        error
+      )
+
+      if (version !== loadVersion) return
+
+      const feeds: [string, string][] = [
+        ['session-feed', 'Unable to load session updates.'],
+        ['announcement-feed', 'Unable to load announcements.'],
+        ['history-feed', 'Unable to load earlier activity.'],
+      ]
+
+      for (const [id, message] of feeds) {
+        document
+          .getElementById(id)
+          ?.replaceChildren(createEmptyMessage(message))
+      }
+    }
+  }
+
+  void loadUpdates()
+
+  const subscription = sanityClient.listen(
+    '*[_type == "conferenceUpdate" && !(_id in path("drafts.**"))]',
+    {},
+    {
+      visibility: 'query',
+      includeResult: false,
+    }
+  ).subscribe({
+    next(event) {
+      if (event.type === 'mutation') {
+        void loadUpdates()
+      }
+    },
+
+    error(error) {
+      console.error(
+        'Sanity live update listener failed:',
+        error
+      )
+    },
+  })
+
+  document.addEventListener(
+    'astro:before-swap',
+    () => subscription.unsubscribe(),
+    {once: true}
+  )
 </script>
