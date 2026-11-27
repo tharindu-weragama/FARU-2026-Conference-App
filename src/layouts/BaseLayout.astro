@@ -1,6 +1,7 @@
+
 ---
 import '../styles/global.css';
-import SiteFooter from '../components/SiteFooter.astro'
+import SiteFooter from '../components/SiteFooter.astro';
 
 interface Props {
   title: string;
@@ -42,40 +43,58 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
+
     <meta name="description" content={description} />
+
     <meta name="theme-color" content="#8BCBD2" />
 
     <title>{title} | FARU 2026</title>
 
+    <!-- OneSignal Web Push SDK -->
     <script
       is:inline
       src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
       defer
     ></script>
 
+    <!-- OneSignal Production Initialization -->
     <script is:inline>
-      if (window.location.hostname === 'localhost') {
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
+      if (
+        window.location.origin ===
+        'https://faru-2026-conference.vercel.app'
+      ) {
+        window.OneSignalDeferred =
+          window.OneSignalDeferred || [];
 
-        window.OneSignalDeferred.push(async function (OneSignal) {
-          try {
-            await OneSignal.init({
-              appId: 'dbeb99b6-9240-45d7-a469-ef9f110bcc92',
-              safari_web_id: 'web.onesignal.auto.40e8587d-66e6-4615-b716-6bb570edb005',
-              notifyButton: {
-                enable: true,
-              },
-              allowLocalhostAsSecureOrigin: true,
-              serviceWorkerPath: '/OneSignalSDKWorker.js',
-            });
-          } catch (error) {
-            console.error('OneSignal initialization failed:', error);
+        window.OneSignalDeferred.push(
+          async function (OneSignal) {
+            try {
+              await OneSignal.init({
+                appId: 'dbeb99b6-9240-45d7-a469-ef9f110bcc92',
+
+                notifyButton: {
+                  enable: true,
+                },
+
+                serviceWorkerPath: '/OneSignalSDKWorker.js',
+              });
+
+              console.info(
+                'FARU 2026 OneSignal initialized'
+              );
+            } catch (error) {
+              console.error(
+                'FARU 2026 OneSignal initialization failed:',
+                error
+              );
+            }
           }
-        });
+        );
       }
     </script>
   </head>
@@ -84,11 +103,13 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
     <div
       class="mx-auto flex h-dvh w-full max-w-[480px] flex-col overflow-hidden bg-faru-cream shadow-xl"
     >
+
       <header
         class="z-10 shrink-0 bg-faru-turquoise px-5 pb-3 text-faru-green"
         style="padding-top: max(12px, env(safe-area-inset-top))"
       >
         <a href="/" class="block w-fit">
+
           <div class="text-xl font-extrabold tracking-tight">
             FARU 2026
           </div>
@@ -96,6 +117,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
           <p class="text-xs font-medium text-faru-green/80">
             19th International Research Conference
           </p>
+
         </a>
       </header>
 
@@ -121,14 +143,20 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
         style="padding-bottom: max(8px, env(safe-area-inset-bottom))"
       >
         <div class="grid grid-cols-4 gap-1">
+
           {navigation.map((item) => {
-            const itemPath = item.href.replace(/\/+$/, '') || '/';
-            const isActive = currentPath === itemPath;
+            const itemPath =
+              item.href.replace(/\/+$/, '') || '/';
+
+            const isActive =
+              currentPath === itemPath;
 
             return (
               <a
                 href={item.href}
-                aria-current={isActive ? 'page' : undefined}
+                aria-current={
+                  isActive ? 'page' : undefined
+                }
                 class:list={[
                   'flex min-h-[56px] flex-col items-center justify-center gap-1 rounded-lg transition-colors',
                   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-faru-green',
@@ -158,8 +186,10 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
               </a>
             );
           })}
+
         </div>
       </nav>
+
     </div>
   </body>
 </html>
