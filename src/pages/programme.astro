@@ -1,4 +1,3 @@
-
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { technicalSessions } from '../data/technicalSessions';
@@ -67,36 +66,48 @@ const dayTwoGroups = [
     title: 'Workshop Inauguration',
     items: [
       {
+        id: 'd2-opening-01',
         time: '06:30',
         title: 'Departure from University of Moratuwa',
       },
       {
+        id: 'd2-opening-02',
         time: '08:30–09:00',
         title: 'Arrival of Participants and Registration',
       },
       {
+        id: 'd2-opening-03',
         time: '09:00–09:10',
         title: 'Welcome Address',
         detail: 'Prof. Y.G. Sandanayake, Dean, Faculty of Architecture',
       },
       {
+        id: 'd2-opening-04',
         time: '09:10–09:15',
         title: 'Introduction to the Keynote Speaker',
       },
       {
+        id: 'd2-opening-05',
         time: '09:15–09:45',
         title: 'Keynote Address',
         detail: 'Mr. Johan Gély',
       },
       {
+        id: 'd2-opening-06',
         time: '09:45–10:30',
         title: 'Featured Speakers’ Session',
         detail:
           'Perspectives on Resilient Intelligence and the Changing Built Environment — Mr. Rusiru Abeysinghe and Mr. Dmitri Cooray. Q&A moderated by Dr. P.I. Singhapathirana.',
       },
       {
-        time: '10:30–11:00',
-        title: 'Refreshments',
+        id: 'd2-opening-07',
+        time: '12:00–12:15',
+        title: 'Refreshments & Entertainment Performance',
+      },
+      {
+        id: 'd2-opening-08',
+        time: '12:15–12:30',
+        title: 'Closing Remarks / Appreciation of Sponsors, Speakers & Contributors',
       },
     ],
   },
@@ -104,44 +115,57 @@ const dayTwoGroups = [
     title: 'I³ — Interactive, Inspiring and Innovative',
     items: [
       {
-        time: '11:00–11:15',
-        title: 'Department Showcase 1',
-        detail: 'Town & Country Planning',
-      },
-      {
-        time: '11:15–11:30',
-        title: 'Department Showcase 2',
-        detail: 'Building Economics',
-      },
-      {
-        time: '11:30–11:45',
-        title: 'Entertainment Performance',
-      },
-      {
-        time: '11:45–12:00',
-        title: 'Department Showcase 3',
-        detail: 'Integrated Design',
-      },
-      {
-        time: '12:00–12:15',
-        title: 'Department Showcase 4',
-        detail: 'Facilities Management',
-      },
-      {
-        time: '12:15–12:30',
-        title: 'Department Showcase 5',
-        detail: 'Architecture',
-      },
-      {
+        id: 'd2-showcase-01',
         time: '12:30–12:45',
+        title: 'Department Showcase 1',
+        detail: 'Town & Country Planning — Dr. M. C. K. de Silva',
+      },
+      {
+        id: 'd2-showcase-02',
+        time: '12:45–13:00',
+        title: 'Department Showcase 2',
+        detail: 'Building Economics — Ch. QS Dr. Suranga Jayasena',
+      },
+      {
+        id: 'd2-networking-01',
+        time: '13:00–14:00',
+        title: 'Lunch',
+      },
+      {
+        id: 'd2-showcase-04',
+        time: '14:00–14:15',
+        title: 'Department Showcase 3',
+        detail: 'Integrated Design — Dr. Dilina Janadith',
+      },
+      {
+        id: 'd2-showcase-05',
+        time: '14:15–14:30',
+        title: 'Department Showcase 4',
+        detail:
+          'Facilities Management — Ms. Suwinka Fernando and Ms. Dianne Fernando',
+      },
+      {
+        id: 'd2-showcase-06',
+        time: '14:30–14:45',
+        title: 'Department Showcase 5',
+        detail:
+          'Architecture — Mr. Ashen Krishantha and Ms. Bhagya Minali Muthumala',
+      },
+      {
+        id: 'd2-showcase-07',
+        time: '14:45–15:00',
         title: 'Entertainment Performance',
+        detail:
+          'M.L.D.C. Lakshan Pehesara, Department of Town & Country Planning',
       },
       {
-        time: '12:45–12:55',
-        title: 'Appreciation of Sponsors, Speakers & Contributors',
+        id: 'd2-showcase-08',
+        time: '15:00–15:15',
+        title: 'Closing Remarks / Appreciation of Sponsors, Speakers & Contributors',
       },
       {
-        time: '12:55–13:00',
+        id: 'd2-showcase-09',
+        time: '15:15–15:20',
         title: 'Vote of Thanks',
         detail: 'Dr. T.L.M. Meetiyagoda, Director, FARU',
       },
@@ -151,23 +175,23 @@ const dayTwoGroups = [
     title: 'Networking & Departure',
     items: [
       {
-        time: '13:00–14:00',
-        title: 'Lunch',
-      },
-      {
-        time: '14:00–16:00',
+        id: 'd2-networking-02',
+        time: '15:20–16:00',
         title: 'Informal Discussions, Networking and Entertainment',
       },
       {
+        id: 'd2-networking-03',
         time: '16:00–16:30',
         title: 'Refreshments',
       },
       {
-        time: '16:30–17:00',
+        id: 'd2-networking-04',
+        time: '',
         title: 'Group Photograph and Return to University of Moratuwa',
       },
       {
-        time: '17:00–19:00',
+        id: 'd2-networking-05',
+        time: '',
         title: 'Arrival at University of Moratuwa and End of Day 2',
       },
     ],
@@ -364,7 +388,9 @@ const dayTwoGroups = [
                 {index === 0 && (
                   <div class="flex items-center justify-between gap-2 rounded-xl border border-[#D6E7C0] bg-white px-3 py-3">
                     <p class="text-sm font-bold text-faru-green">Lunch</p>
-                    <time class="text-xs font-bold tabular-nums text-faru-green">12:30–13:30</time>
+                    <time class="text-xs font-bold tabular-nums text-faru-green">
+                      12:30–13:30
+                    </time>
                   </div>
                 )}
               </>
@@ -461,7 +487,10 @@ const dayTwoGroups = [
 
         {blocks.map((block, index) => (
           <>
-            <section class="space-y-3" aria-label={`Technical Block ${block.number}`}>
+            <section
+              class="space-y-3"
+              aria-label={`Technical Block ${block.number}`}
+            >
 
               <div class="rounded-xl border border-[#D6E7C0] bg-[#EDF5DC] px-4 py-3">
 
@@ -609,7 +638,9 @@ const dayTwoGroups = [
             {index === 0 && (
               <div class="flex items-center justify-between gap-3 rounded-xl border border-[#D6E7C0] bg-white px-4 py-3">
                 <p class="text-sm font-bold text-faru-green">Lunch</p>
-                <time class="text-xs font-bold tabular-nums text-faru-green">12:30–13:30</time>
+                <time class="text-xs font-bold tabular-nums text-faru-green">
+                  12:30–13:30
+                </time>
               </div>
             )}
           </>
@@ -656,7 +687,10 @@ const dayTwoGroups = [
           <div class="divide-y divide-gray-100 px-4 py-1">
 
             {group.items.map((item) => (
-              <div class="flex gap-3 py-2.5">
+              <div
+                data-programme-id={item.id}
+                class="flex gap-3 py-2.5"
+              >
 
                 <time class="w-[91px] shrink-0 text-[11px] font-bold tabular-nums text-faru-green">
                   {item.time}
@@ -709,7 +743,7 @@ const dayTwoGroups = [
             aria-hidden="true"
           >
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 6.5 2z" />
           </svg>
         </div>
 
@@ -725,7 +759,9 @@ const dayTwoGroups = [
 
       </div>
 
-      <span class="shrink-0 text-lg text-faru-green" aria-hidden="true">↗</span>
+      <span class="shrink-0 text-lg text-faru-green" aria-hidden="true">
+        ↗
+      </span>
 
     </a>
 
@@ -914,7 +950,10 @@ const dayTwoGroups = [
         section
           .querySelectorAll<HTMLElement>('.divide-y > div')
           .forEach((row, index) => {
-            const id = `${prefix}-${String(index + 1).padStart(2, '0')}`;
+            const id =
+              row.dataset.programmeId ||
+              `${prefix}-${String(index + 1).padStart(2, '0')}`;
+
             programmeRows.set(id, row);
           });
       });
@@ -932,7 +971,8 @@ const dayTwoGroups = [
     }
 
     function setOngoing(row: HTMLElement, ongoing: boolean) {
-      const existing = row.querySelector<HTMLElement>('[data-ongoing-badge]');
+      const existing =
+        row.querySelector<HTMLElement>('[data-ongoing-badge]');
 
       if (!ongoing) {
         existing?.remove();
@@ -944,6 +984,7 @@ const dayTwoGroups = [
       const badge = document.createElement('span');
 
       badge.dataset.ongoingBadge = 'true';
+
       badge.className =
         'shrink-0 self-start rounded-md bg-[#DDF3D4] px-2 py-1 text-[10px] font-bold text-[#1E682D]';
 
