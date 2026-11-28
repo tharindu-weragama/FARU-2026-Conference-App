@@ -1,4 +1,3 @@
-
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 ---
@@ -245,33 +244,71 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 
     ...numberedItems('d2-opening', [
       'Day 2 · 06:30 · Departure from University of Moratuwa',
-      'Day 2 · 08:30 · Registration',
+      'Day 2 · 08:30 · Arrival and Registration',
       'Day 2 · 09:00 · Welcome Address',
       'Day 2 · 09:10 · Introduction to Keynote Speaker',
       'Day 2 · 09:15 · Keynote Address',
       'Day 2 · 09:45 · Featured Speakers Session',
-      'Day 2 · 10:30 · Refreshments',
+      'Day 2 · 12:00 · Refreshments & Entertainment Performance',
+      'Day 2 · 12:15 · Closing Remarks / Appreciation of Sponsors, Speakers & Contributors',
     ]),
 
-    ...numberedItems('d2-showcase', [
-      'Day 2 · 11:00 · Department Showcase 1',
-      'Day 2 · 11:15 · Department Showcase 2',
-      'Day 2 · 11:30 · Entertainment Performance',
-      'Day 2 · 11:45 · Department Showcase 3',
-      'Day 2 · 12:00 · Department Showcase 4',
-      'Day 2 · 12:15 · Department Showcase 5',
-      'Day 2 · 12:30 · Entertainment Performance',
-      'Day 2 · 12:45 · Closing Remarks',
-      'Day 2 · 12:55 · Vote of Thanks',
-    ]),
-
-    ...numberedItems('d2-networking', [
-      'Day 2 · 13:00 · Lunch',
-      'Day 2 · 14:00 · Networking and Entertainment',
+    [
+      'd2-showcase-01',
+      'Day 2 · 12:30 · Showcase 1 - Town & Country Planning',
+    ],
+    [
+      'd2-showcase-02',
+      'Day 2 · 12:45 · Showcase 2 - Building Economics',
+    ],
+    [
+      'd2-showcase-04',
+      'Day 2 · 13:00 · Showcase 3 - Integrated Design',
+    ],
+    [
+      'd2-networking-01',
+      'Day 2 · 13:15 · Lunch Break',
+    ],
+    [
+      'd2-showcase-05',
+      'Day 2 · 14:15 · Showcase 4 - Facilities Management',
+    ],
+    [
+      'd2-showcase-06',
+      'Day 2 · 14:30 · Showcase 5 - Architecture',
+    ],
+    [
+      'd2-showcase-07',
+      'Day 2 · 14:45 · Entertainment Performance',
+    ],
+    [
+      'd2-showcase-08',
+      'Day 2 · 15:00 · Closing Remarks / Appreciation of Sponsors, Speakers & Contributors',
+    ],
+    [
+      'd2-showcase-09',
+      'Day 2 · 15:15 · Vote of Thanks',
+    ],
+    [
+      'd2-networking-02',
+      'Day 2 · 15:20 · Informal Discussions, Networking and Entertainment',
+    ],
+    [
+      'd2-networking-03',
       'Day 2 · 16:00 · Refreshments',
-      'Day 2 · 16:30 · Group Photograph and Return',
-      'Day 2 · 17:00 · Arrival at University of Moratuwa',
-    ]),
+    ],
+    [
+      'd2-networking-04',
+      'Day 2 · Group Photograph and Return to University of Moratuwa',
+    ],
+    [
+      'd2-networking-05',
+      'Day 2 · Arrival at University of Moratuwa and End of Day 2',
+    ],
+    [
+      'd2-showcase-03',
+      'Day 2 · Entertainment Performance (Original Programme)',
+    ],
   ])
 
   function formatTime(value?: string) {
@@ -348,6 +385,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     if (technical) {
       const number = Number(technical[1])
       const room = `Room ${'ABCDE'[(number - 1) % 5]}`
+
       const time = number <= 5
         ? '11:00–12:30'
         : number <= 10
